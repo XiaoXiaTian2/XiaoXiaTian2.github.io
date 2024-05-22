@@ -13,9 +13,29 @@
     <category term="資料庫" />
     <entry>
         <id>https://xiaoxiatian2.github.io/Blog_G/first-try/</id>
-        <title>first-try</title>
+        <title>First-Post</title>
         <link rel="alternate" href="https://xiaoxiatian2.github.io/Blog_G/first-try/"/>
         <content type="html">&lt;h1 id=&#34;圖片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#圖片&#34;&gt;#&lt;/a&gt; 圖片&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;assets/like.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;文章封面圖&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文章封面圖&#34;&gt;#&lt;/a&gt; 文章封面圖&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;本文作者： Ruri Shimotsuki @優萌初華&lt;/li&gt;
+&lt;li&gt;本文链接： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zaG9rYS5sb3N0eXUubWUvY29tcHV0ZXItc2NpZW5jZS9ub3RlL3RoZW1lLXNob2thLWRvYy9kaXNwbGF5Lw==&#34;&gt;https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/display/&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;版权声明： 本站所有文章除特别声明外，均采用 (CC) BY-NC-SA 许可协议。转载请注明出处！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cover: assets/wallpaper-2572384.jpg&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;或是&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cover: http://placehold.it/350x150.jpg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h1 id=&#34;圖片展示-相冊&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#圖片展示-相冊&#34;&gt;#&lt;/a&gt; 圖片展示、相冊&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;本文作者： Ruri Shimotsuki @優萌初華&lt;/li&gt;
+&lt;li&gt;本文链接： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zaG9rYS5sb3N0eXUubWUvY29tcHV0ZXItc2NpZW5jZS9ub3RlL3RoZW1lLXNob2thLWRvYy9kaXNwbGF5Lw==&#34;&gt;https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/display/&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;版权声明： 本站所有文章除特别声明外，均采用 (CC) BY-NC-SA 许可协议。转载请注明出处！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&#34;gallery&#34; data-height=&#34;120&#34;&gt;&lt;img data-src=&#34;https://tva3.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://tva3.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </content>
         <updated>2024-05-22T03:53:31.000Z</updated>
     </entry>

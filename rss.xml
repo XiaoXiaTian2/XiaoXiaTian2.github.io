@@ -18,8 +18,10 @@
             <guid isPermalink="true">https://xiaoxiatian2.github.io/2024/05/23/experience-sharing/</guid>
             <title>2024六角學院軟體工程師體驗營心得分享</title>
             <link>https://xiaoxiatian2.github.io/2024/05/23/experience-sharing/</link>
+            <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexoschool/" />
             <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
             <category term="經驗" scheme="https://xiaoxiatian2.github.io/tags/%E7%B6%93%E9%A9%97/" />
+            <category term="hexoschool" scheme="https://xiaoxiatian2.github.io/tags/hexoschool/" />
             <pubDate>Thu, 23 May 2024 21:01:51 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;https://firebasestorage.googleapis.com/v0/b/hexschool-courses.appspot.com/o/hex-website%2Fblog%2F1710986781813-engineer-camp.png?alt=media&amp;amp;token=536bc802-b2b7-4778-8887-2017e88853d7&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;內容簡介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#內容簡介&#34;&gt;#&lt;/a&gt; 內容簡介&lt;/h2&gt;
@@ -60,14 +62,19 @@
         </item>
         <item>
             <guid isPermalink="true">https://xiaoxiatian2.github.io/2024/05/22/first-try/</guid>
-            <title>第一篇文章</title>
+            <title>原作者連結、圖片功能</title>
             <link>https://xiaoxiatian2.github.io/2024/05/22/first-try/</link>
+            <category term="網站功能" scheme="https://xiaoxiatian2.github.io/categories/%E7%B6%B2%E7%AB%99%E5%8A%9F%E8%83%BD/" />
             <category term="文章" scheme="https://xiaoxiatian2.github.io/tags/%E6%96%87%E7%AB%A0/" />
-            <category term="分享" scheme="https://xiaoxiatian2.github.io/tags/%E5%88%86%E4%BA%AB/" />
+            <category term="hexoshool" scheme="https://xiaoxiatian2.github.io/tags/hexoshool/" />
             <category term="狗狗" scheme="https://xiaoxiatian2.github.io/tags/%E7%8B%97%E7%8B%97/" />
             <category term="相片" scheme="https://xiaoxiatian2.github.io/tags/%E7%9B%B8%E7%89%87/" />
             <pubDate>Wed, 22 May 2024 11:53:31 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;圖片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#圖片&#34;&gt;#&lt;/a&gt; 圖片&lt;/h1&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;原作者網站-ruri-shimotsuki&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原作者網站-ruri-shimotsuki&#34;&gt;#&lt;/a&gt; 原作者網站 - &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zaG9rYS5sb3N0eXUubWUv&#34;&gt;Ruri Shimotsuki&lt;/span&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主題風格為原作者所創，內容部分則為自行填充&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;圖片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#圖片&#34;&gt;#&lt;/a&gt; 圖片&lt;/h1&gt;
 &lt;p&gt;&lt;img data-src=&#34;/assets/first-article.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;文章封面圖&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文章封面圖&#34;&gt;#&lt;/a&gt; 文章封面圖&lt;/h1&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight yml&#34;&gt;&lt;figcaption&gt;&lt;span&gt;yaml&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;attr&#34;&gt;cover:&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;assets/wallpaper-2572384.jpg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;或是&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;attr&#34;&gt;cover:&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;http://placehold.it/350x150.jpg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;

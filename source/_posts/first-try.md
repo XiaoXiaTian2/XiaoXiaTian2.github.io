@@ -8,7 +8,7 @@ categories:
 
 tags:
   - 文章
-  - hexoshool
+  - hexoschool
   - 狗狗
   - 相片
 ---

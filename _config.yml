@@ -14,8 +14,8 @@ timezone: 'Asia/Taipei'
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://XiaoXiaTian2.github.io
-root: /
-permalink: :year/:month/:day/:title/
+# root: /
+permalink: :year:month:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -109,7 +109,7 @@ deploy:
   repo: https://github.com/XiaoXiaTian2/XiaoXiaTian2.github.io
   # example, https://github.com/hexojs/hexojs.github.io
   branch: main
-  message: '完成基本功能'
+  message: ''
 
 autoprefixer:
   exclude:
@@ -117,7 +117,7 @@ autoprefixer:
 
 markdown:
   render: # 渲染器设置
-    html: false # 过滤 HTML 标签
+    html: true # 过滤 HTML 标签
     xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
     breaks: true # 转换段落里的 '\n' 到 <br>。
     linkify: true # 将类似 URL 的文本自动转换为链接。

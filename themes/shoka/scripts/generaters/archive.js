@@ -137,6 +137,5 @@ if (!(hexo.config.archive && hexo.config.archive.enabled === false)) {
     }
 
     return result;
-
   });
 }

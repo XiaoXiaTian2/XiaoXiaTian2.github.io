@@ -5,10 +5,9 @@ date: 2024-05-22 11:53:31
 cover: assets/first-article.jpg
 categories:
   - 網站功能
-
 tags:
   - 文章
-  - hexoschool
+  - hexschool
   - 狗狗
   - 相片
 ---

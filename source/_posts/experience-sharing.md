@@ -8,7 +8,7 @@ categories:
 tags:
   - 個人
   - 經驗
-  - hexoschool
+  - hexschool
 ---
 
 ![](https://firebasestorage.googleapis.com/v0/b/hexschool-courses.appspot.com/o/hex-website%2Fblog%2F1710986781813-engineer-camp.png?alt=media&token=536bc802-b2b7-4778-8887-2017e88853d7)

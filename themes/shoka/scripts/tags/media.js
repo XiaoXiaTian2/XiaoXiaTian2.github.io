@@ -14,7 +14,6 @@ function postMedia(args, content) {
       return `<div class="media-container"><div class="player" data-type="${args[0]}" data-src='${JSON.stringify(list)}'></div></div>`;
       break;
   }
-
 }
 
 hexo.extend.tag.register('media', postMedia, {ends: true});

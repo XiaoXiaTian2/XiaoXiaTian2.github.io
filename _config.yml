@@ -70,7 +70,8 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-  六角學院: hexoschool
+  六角學院: hexschool
+
 tag_map:
 
 # Metadata elements

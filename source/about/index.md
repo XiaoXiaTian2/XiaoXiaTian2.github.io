@@ -6,15 +6,15 @@ date: 2024-05-22 11:50:08
 
 # 關於我
 
-- 後端工程師追尋者
-- 技術轉職者
+- 後端工程師
+- 技術追尋者
 
 # 技術與框架
 
-- 後端技術 : PHP、Laravel
+- 後端技術 : PHP、Laravel、Node.js
 - 網頁技術 : HTML、CSS、Javascript、React.js、AJAX
 - 前端切版 : Bootstrap5
-- 資料庫 : MySQL
+- 資料庫 : MySQL、MongoDB
 - 版本控制 : Git、Github
 
 # 作品

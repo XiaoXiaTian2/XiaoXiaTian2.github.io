@@ -1,6 +1,7 @@
 ---
 title: 2024六角學院後端工程師-資料庫體驗營小節作業
 cover: assets/sharing.jpg
+date: 2024-10-26 15:50:26
 categories:
   - 六角學院
 
@@ -14,7 +15,7 @@ tags:
 
 ## 資料集
 
-```sql
+```sql sql
 CREATE TABLE products (
    name VARCHAR(100),         -- 商品名稱
    price INTEGER,            -- 原價
@@ -43,11 +44,11 @@ INSERT INTO products (name, price, discount_price, stock, category, status) VALU
 
 ## 作業解答
 
-**基礎練習**
+### 基礎練習
 
 1. 找到北歐風雙人沙發的價格和庫存
 
-```sql
+```sql sql
 SELECT name, price, discount_price, stock
 FROM products
 WHERE name = '北歐風雙人沙發';
@@ -55,7 +56,7 @@ WHERE name = '北歐風雙人沙發';
 
 2. 找出櫃子類且價格在 5000 以下的商品
 
-```sql
+```sql sql
 SELECT *
 FROM products
 WHERE category = '櫃子'
@@ -65,15 +66,17 @@ WHERE category = '櫃子'
 
 3. 確認日式雙人床架的庫存狀況
 
-```sql
+```sql sql
 SELECT name, stock
 FROM products
 WHERE name = '日式雙人床架';
 ```
 
-**AND 語法** 4. 想找 4 萬以下，而且有現貨的沙發
+### AND 語法
 
-```sql
+4. 想找 4 萬以下，而且有現貨的沙發
+
+```sql sql
 SELECT name, price, discount_price, stock
 FROM products
 WHERE category = '沙發'
@@ -84,7 +87,7 @@ WHERE category = '沙發'
 
 5. 找到沙發類且有特價（原價大於優惠價）且還有庫存的商品
 
-```sql
+```sql sql
 SELECT *
 FROM products
 WHERE category = '沙發'
@@ -93,9 +96,11 @@ WHERE category = '沙發'
   AND status = 'active';
 ```
 
-**OR 語法** 6. 找出櫃子類或桌子類的商品
+### OR 語法
 
-```sql
+6. 找出櫃子類或桌子類的商品
+
+```sql sql
 SELECT *
 FROM products
 WHERE category = '櫃子'
@@ -104,16 +109,18 @@ WHERE category = '櫃子'
 
 7. 北歐風雙人沙發和貓抓皮 L 型沙發的庫存狀況
 
-```sql
+```sql sql
 SELECT name, stock
 FROM products
 WHERE name = '北歐風雙人沙發'
   OR name = '貓抓皮L型沙發';
 ```
 
-**IN 語法** 8. 沙發、櫃子和桌子這三種分類的商品
+### IN 語法
 
-```sql
+8. 沙發、櫃子和桌子這三種分類的商品
+
+```sql sql
 SELECT *
 FROM products
 WHERE category IN ('沙發', '櫃子', '桌子');
@@ -121,15 +128,17 @@ WHERE category IN ('沙發', '櫃子', '桌子');
 
 9. 電腦辦公椅和餐椅四入組的價格
 
-```sql
+```sql sql
 SELECT name, price, discount_price
 FROM products
 WHERE name IN ('電腦辦公椅', '餐椅四入組');
 ```
 
-**BETWEEN 語法** 10. 價格 10000 到 20000 的所有商品
+### BETWEEN 語法
 
-```sql
+10. 價格 10000 到 20000 的所有商品
+
+```sql sql
 SELECT *
 FROM products
 WHERE price BETWEEN 10000 AND 20000;
@@ -137,23 +146,27 @@ WHERE price BETWEEN 10000 AND 20000;
 
 11. 庫存在 5 到 15 之間的商品
 
-```sql
+```sql sql
 SELECT *
 FROM products
 WHERE stock BETWEEN 5 AND 15;
 ```
 
-**NOT IN 語法** 12. 列出除了沙發和床架以外的商品
+### NOT IN 語法
 
-```sql
+12. 列出除了沙發和床架以外的商品
+
+```sql sql
 SELECT *
 FROM products
 WHERE category NOT IN ('沙發', '床架');
 ```
 
-**UPDATE 語法** 13. 調降北歐風雙人沙發 2000 元
+### UPDATE 語法
 
-```sql
+13. 調降北歐風雙人沙發 2000 元
+
+```sql sql
 UPDATE products
 SET price = price - 2000
 WHERE name = '北歐風雙人沙發';
@@ -161,7 +174,7 @@ WHERE name = '北歐風雙人沙發';
 
 14. 增加電腦辦公椅 5 庫存數量
 
-```sql
+```sql sql
 UPDATE products
 SET stock = stock + 5
 WHERE name = '電腦辦公椅';
@@ -169,7 +182,7 @@ WHERE name = '電腦辦公椅';
 
 15. 清掉兒童床架和電競書桌的資料
 
-```sql
+```sql sql
 DELETE FROM products
 WHERE name IN ('兒童床架', '電競書桌');
 ```
@@ -179,7 +192,7 @@ WHERE name IN ('兒童床架', '電競書桌');
 - **兒童床架、電競書桌賣完了，將庫存補充至 20 件，並將狀態調整為 active**
 - 解答：
 
-```sql
+```sql sql
 UPDATE products
 SET
   stock = 20,
@@ -194,7 +207,7 @@ WHERE name IN ('兒童床架', '電競書桌');
 <details>
    <summary>查看解答</summary>
    <p>
-   ```sql
+   ```sql sql
    UPDATE products
    SET
      stock = 3,

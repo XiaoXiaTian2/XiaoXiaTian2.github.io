@@ -207,3 +207,48 @@ SELECT
 FROM children
 INNER JOIN parents ON children.parent_id = parents.id;
 ```
+
+---
+
+### 4. 回答前一位同學題目
+
+:::info
+**延伸作業二，三年一班老師請產假，改由原三年二班老師接，校長'廖洧杰'接三年二班老師**
+:::
+
+- 根據題意假定為三年一班麥可老師請產假，改由三年二班廖洧杰老師接任
+- teachers 表
+
+```sql sql
+CREATE TABLE teachers (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50)
+);
+```
+
+- students 表
+
+```sql sql
+CREATE TABLE students (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50),
+  teacher_id INTEGER,
+  gender VARCHAR(2),
+  age INTEGER,
+
+  FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
+```
+
+```sql sql
+UPDATE
+  students
+SET
+  teacher_id = (SELECT id FROM teachers WHERE name = '廖洧杰')
+WHERE
+  teacher_id = (SELECT id FROM teachers WHERE name = '麥可');
+```
+
+### 情境題
+
+- 新的學期開始，所有同學都升了一個年級且不換班，並新增欄位「已註冊」，其值為整數且預設值為 0

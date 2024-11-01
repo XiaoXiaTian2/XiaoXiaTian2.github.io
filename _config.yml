@@ -29,7 +29,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: '_posts/imamges/**/*'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -94,7 +94,7 @@ pagination_dir: page
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
-include:
+include: '_post/images/**/*'
 exclude:
 ignore:
 
@@ -142,12 +142,12 @@ markdown:
         name: ./markdown-it-furigana
         enable: true
         options:
-          fallbackParens: "()"
+          fallbackParens: '()'
     - plugin:
         name: ./markdown-it-spoiler
         enable: true
         options:
-          title: "你知道得太多了"
+          title: '你知道得太多了'
     - plugin:
         name: ./markdown-it-prism
         enable: true
@@ -191,19 +191,19 @@ minify:
 #     - tags
 
 feed:
-    limit: 20
-    order_by: "-date"
-    tag_dir: false
-    category_dir: false
-    rss:
-        enable: true
-        template: "themes/shoka/layout/_alternate/rss.ejs"
-        output: "rss.xml"
-    atom:
-        enable: true
-        template: "themes/shoka/layout/_alternate/atom.ejs"
-        output: "atom.xml"
-    jsonFeed:
-        enable: true
-        template: "themes/shoka/layout/_alternate/json.ejs"
-        output: "feed.json"
+  limit: 20
+  order_by: '-date'
+  tag_dir: false
+  category_dir: false
+  rss:
+    enable: true
+    template: 'themes/shoka/layout/_alternate/rss.ejs'
+    output: 'rss.xml'
+  atom:
+    enable: true
+    template: 'themes/shoka/layout/_alternate/atom.ejs'
+    output: 'atom.xml'
+  jsonFeed:
+    enable: true
+    template: 'themes/shoka/layout/_alternate/json.ejs'
+    output: 'feed.json'

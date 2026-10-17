@@ -2,6 +2,7 @@
 title: 關於我
 cover: assets/about_cover.jpg
 date: 2024-05-22 11:50:08
+updated: 2024-10-26 15:45:43
 ---
 
 # 關於我

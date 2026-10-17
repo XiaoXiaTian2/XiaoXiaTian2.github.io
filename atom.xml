@@ -197,8 +197,8 @@
 &lt;/ul&gt;
 &lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption&gt;&lt;span&gt;sql&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;SELECT&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;COUNT&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;DISTINCT&lt;/span&gt;(user_id)) &lt;span class=&#34;keyword&#34;&gt;AS&lt;/span&gt; &amp;quot;預約會員人數&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;FROM&lt;/span&gt; &amp;quot;COURSE_BOOKING&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;WHERE&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  created_at &lt;span class=&#34;keyword&#34;&gt;BETWEEN&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;2024-11-01 00:00:00&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;AND&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;2024-11-30 23:59:59&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;AND&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  status &lt;span class=&#34;operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;課程已取消&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-12-01T13:10:26.000Z</updated>
     </entry>
@@ -291,8 +291,8 @@
 &lt;/ul&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-11-01T12:50:26.000Z</updated>
     </entry>
@@ -390,8 +390,8 @@
 &lt;/details&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-10-26T07:50:26.000Z</updated>
     </entry>
@@ -436,9 +436,9 @@
 &lt;/blockquote&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
+        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="經驗" scheme="https://xiaoxiatian2.github.io/tags/%E7%B6%93%E9%A9%97/" />
-        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <updated>2024-05-23T13:01:51.000Z</updated>
     </entry>
     <entry>
@@ -462,11 +462,11 @@
 &lt;img data-src=&#34;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRieHg91inpStbODEoeJB6ZNd3__nYy6bOPig&amp;amp;s&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </content>
         <category term="網站功能" scheme="https://xiaoxiatian2.github.io/categories/%E7%B6%B2%E7%AB%99%E5%8A%9F%E8%83%BD/" />
-        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="文章" scheme="https://xiaoxiatian2.github.io/tags/%E6%96%87%E7%AB%A0/" />
+        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="狗狗" scheme="https://xiaoxiatian2.github.io/tags/%E7%8B%97%E7%8B%97/" />
         <category term="相片" scheme="https://xiaoxiatian2.github.io/tags/%E7%9B%B8%E7%89%87/" />
-        <updated>2024-05-22T03:53:31.000Z</updated>
+        <updated>2024-05-22T03:53:31.001Z</updated>
     </entry>
     <entry>
         <id>https://xiaoxiatian2.github.io/20240522/hello-world/</id>

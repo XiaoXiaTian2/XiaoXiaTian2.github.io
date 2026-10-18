@@ -2,6 +2,7 @@
 title: 【C# 實作 01】OrderSystem：Strategy 折扣引擎與 Gemini Function Calling
 date: 2026-10-18 20:10:00
 updated: 2026-10-18 20:10:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 專案實作

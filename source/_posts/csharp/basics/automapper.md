@@ -2,6 +2,7 @@
 title: 【C# 實作 07】AutoMapper：用反射與 Expression Tree 自己寫 Mapper
 date: 2026-10-18 21:10:00
 updated: 2026-10-18 21:10:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 語言基礎

@@ -2,6 +2,7 @@
 title: 【C# 實作 06】AccountingApp：記帳本的 MVP、Repository 與 Builder
 date: 2026-10-18 21:00:00
 updated: 2026-10-18 21:00:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 專案實作

@@ -2,6 +2,7 @@
 title: 【C# 實作 03】Rx：從觀察者模式到自製 Subject / Subscription
 date: 2026-10-18 20:30:00
 updated: 2026-10-18 20:30:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 設計模式

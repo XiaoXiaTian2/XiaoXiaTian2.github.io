@@ -2,6 +2,7 @@
 title: {{ title }}
 date: {{ date }}
 updated: {{ date }}
+cover: assets/csharp-cover.jpg
 # 子分類擇一：語言基礎、資料結構、設計模式、桌面應用、專案實作
 categories:
   - C#

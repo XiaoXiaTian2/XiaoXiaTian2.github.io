@@ -2,6 +2,7 @@
 title: 【C# 實作 04】YoutuberSubcribe：把自製 Rx 套用到 WinForms
 date: 2026-10-18 20:40:00
 updated: 2026-10-18 20:40:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 桌面應用

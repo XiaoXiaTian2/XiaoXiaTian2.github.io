@@ -2,6 +2,7 @@
 title: 【C# 實作 05】StudentManagement：WPF 的 MVVM 搭配 MVP
 date: 2026-10-18 20:50:00
 updated: 2026-10-18 20:50:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 桌面應用

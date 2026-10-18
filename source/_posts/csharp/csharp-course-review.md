@@ -2,6 +2,7 @@
 title: C# 課程實作總整理：8 個 GitHub 專案的知識地圖
 date: 2026-10-18 21:30:00
 updated: 2026-10-18 21:30:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
 tags:

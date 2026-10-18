@@ -2,6 +2,7 @@
 title: 【C# 實作 02】LinkedList：自製串列、二元搜尋樹、Dictionary 與迭代器
 date: 2026-10-18 20:20:00
 updated: 2026-10-18 20:20:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 資料結構

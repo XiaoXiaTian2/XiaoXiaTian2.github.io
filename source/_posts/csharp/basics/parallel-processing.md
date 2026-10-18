@@ -2,6 +2,7 @@
 title: 【C# 實作 08】ParallelProcessing：千萬筆 CSV 平行讀寫實驗
 date: 2026-10-18 21:20:00
 updated: 2026-10-18 21:20:00
+cover: assets/csharp-cover.jpg
 categories:
   - C#
   - 語言基礎

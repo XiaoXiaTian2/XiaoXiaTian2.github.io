@@ -80,6 +80,21 @@ C# 文章使用兩層分類：`C#` > 子分類。資料夾名稱即分類網址�
 - 文章封面：front-matter 的 `cover`，例如 `cover: assets/sharing.jpg`（圖片放在 `source/assets/`）
 - 分類封面：Shoka 只有在 `source/_posts/<分類網址>/cover.jpg` 存在時，才會在首頁顯示該分類卡片，例如 `source/_posts/csharp/cover.jpg`、`source/_posts/csharp/basics/cover.jpg`
 
+### 程式碼區塊
+
+程式碼區塊的開頭要同時寫語言與標題，格式是 ` ```語言 標題 `：
+
+````markdown
+```csharp csharp
+var total = items.Sum(x => x.Price);
+```
+````
+
+- 沒有特定語言時寫 ` ```text text `
+- 標題可以是任意文字，例如 ` ```csharp Program.cs `
+
+本站由 Hexo 內建的 highlight.js 處理程式碼區塊，只有寫了標題才會產生標題列。少了標題列，Shoka 左上角的三個圓點會疊在第一行程式碼上。
+
 ## 預覽與部署
 
 ```bash

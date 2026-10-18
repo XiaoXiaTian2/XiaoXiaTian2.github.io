@@ -19,7 +19,7 @@ tags:
 
 # 專案簡介
 
-Rx repo 裡有兩個專案：
+這次練習分成兩個專案：
 
 - **EventHandlerPractice**（根目錄）：Console 程式，練習運算子多載、經典的 `ISubject` / `IObeserver` 觀察者模式
 - **Rx**（`Rx/` 子資料夾）：類別庫，自製的 `Subject<T>`、`Observer<T>`、`Subscription<T>`，下一篇的 YoutuberSubcribe 就是引用它
@@ -28,7 +28,6 @@ Rx repo 裡有兩個專案：
 
 - 技術：.NET Framework 4.8
 - 主題：`Action<T>`、`event EventHandler<T>`、運算子多載、泛型限制條件、觀察者模式
-- Repo：[https://github.com/XiaoXiaTian2/Rx](https://github.com/XiaoXiaTian2/Rx)
 
 # 架構與功能
 

@@ -29,7 +29,6 @@ tags:
 
 - 平台：**.NET Framework 4.8**、Console
 - 沒有使用任何 NuGet 套件，只用 `System.Reflection` 與 `System.Linq.Expressions`
-- Repo：[https://github.com/XiaoXiaTian2/AutoMapper](https://github.com/XiaoXiaTian2/AutoMapper)
 
 # 架構與功能
 

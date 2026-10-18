@@ -23,9 +23,8 @@ LinkedList 是一個包含 4 個 Console 專案的方案，每個專案對應一
 
 - 技術：.NET Framework 4.8、Console 應用程式
 - 主題：泛型鏈結串列、二元搜尋樹（DFS / BFS）、雜湊表、`IEnumerable` / `IEnumerator`、集合初始化器
-- Repo：[https://github.com/XiaoXiaTian2/LinkedList](https://github.com/XiaoXiaTian2/LinkedList)
 
-這個 repo 沒有單元測試，`Program.cs` 裡留著很多註解掉的手動測試程式，也記錄了老師出的作業題目（例如「完成 BFS 的迭代模式（不可以汙染你的 Tree）」）。
+這次沒有寫單元測試，`Program.cs` 裡留著很多註解掉的手動測試程式，也記錄了老師出的作業題目（例如「完成 BFS 的迭代模式（不可以汙染你的 Tree）」）。
 
 # 架構與功能
 

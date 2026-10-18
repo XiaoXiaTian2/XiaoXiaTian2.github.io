@@ -25,9 +25,8 @@ OrderSystem 是一個點餐系統：左邊依菜單動態產生勾選框與數�
 - 技術：.NET Framework 4.8、WinForms
 - 套件：Newtonsoft.Json（菜單與折扣規則序列化）、Meziantou.Framework.Win32.CredentialManager（讀取 API Key）
 - AI：Gemini API（`gemini-2.5-flash`）的 Function Calling
-- Repo：[https://github.com/XiaoXiaTian2/OrderSystem](https://github.com/XiaoXiaTian2/OrderSystem)
 
-菜單與 22 種折扣規則都放在 `Menu.json`，路徑寫在 `App.config` 的 `Menu` 設定裡（目前是我本機的絕對路徑，clone 下來要先改成自己的位置）。
+菜單與 22 種折扣規則都放在 `Menu.json`，路徑寫在 `App.config` 的 `Menu` 設定裡（目前是本機的絕對路徑，換電腦執行要先改成實際位置）。
 
 # 架構與功能
 
@@ -267,7 +266,7 @@ public abstract class ATool<T>
 private static readonly string _apiKey = CredentialManager.ReadCredential(applicationName: "GeminiAppKey").Password;
 ```
 
-這樣 repo 公開到 GitHub 也不會外洩金鑰；代價是執行前要先在認證管理員新增一筆名為 `GeminiAppKey` 的認證。
+這樣程式碼分享出去也不會外洩金鑰；代價是執行前要先在認證管理員新增一筆名為 `GeminiAppKey` 的認證。
 
 ## WinForms：動態產生控制項並用 Tag 互相關聯
 
@@ -312,8 +311,8 @@ class ReceivePanelHandler
 
 1. **`AI/AIAgent.cs` 的 `requestModel` 是 static**：`protected static AIRequestModel requestModel = new AIRequestModel();`，而 `DiscountContext` 每次都 `new AIAgent()` 再 `AddPrompt` 兩次。因為欄位是 static，`contents` 不會隨新的 `AIAgent` 重置，AI 模式下每次改數量都會把整份菜單 JSON 和新的點餐內容再疊上去，請求越來越大，前幾次的點餐內容也可能干擾模型判斷。修正方向：改成 instance 欄位，或在每次請求前清空 `contents`。
 2. **`AIAgent.ExecRequest` 每次請求都 `new HttpClient()`**：`await (new HttpClient()).SendAsync(request)` 既沒有重用也沒有 Dispose。AI 模式下每改一次數量就會發一次請求，頻繁建立 `HttpClient` 容易耗盡 socket。檔案裡其實已經有註解掉的 `private static readonly HttpClient _httpClient`，改回共用同一個實例即可。
-3. **`DiscountOrderFactory` 只是空殼**：`CreateDiscountOrder` 裡的 switch 全部被註解，永遠回傳 `null`，而且所有呼叫它的地方（`Discount.cs`、`Order.cs`）也都是註解。它和 `DiscountOrders/` 底下覆寫 `CalDisount` 的類別都是改成 Strategy 之前的遺留程式，留著會讓人誤以為還有另一條折扣流程。修正方向：刪除，或搬到另一個分支保存。
-4. **手動選折扣時理由欄位會顯示 `abc`**：`DiscountContext.HandleDiscount` 非 AI 分支回傳 `("abc", "")`，這個值經過 `ShowPanel` 放進 `FullSidePanel.reason`，最後在 `Form1.GetOrder` 被寫進 `textBox1.Text`。看起來是開發時的佔位字串，應改成空字串或折扣名稱。
+3. **`DiscountOrderFactory` 只是空殼**：`CreateDiscountOrder` 裡的 switch 全部被註解，永遠回傳 `null`，而且所有呼叫它的地方（`Discount.cs`、`Order.cs`）也都是註解。它和 `DiscountOrders/` 底下覆寫 `CalDisount` 的類別都是改成 Strategy 之前的遺留程式，留著會讓人誤以為還有另一條折扣流程。修正方向：直接刪除。
+4. **手動選折扣時理由欄位會顯示 `abc`**：`DiscountContext.HandleDiscount` 非 AI 分支回傳 `("abc", "")`，這個值經過 `ShowPanel` 放進 `FullSidePanel.reason`，最後在 `Form1.GetOrder` 被寫進 `textBox1.Text`。這是開發時留下的佔位字串，應改成空字串或折扣名稱。
 
 # 小結
 

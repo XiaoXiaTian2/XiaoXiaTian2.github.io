@@ -29,7 +29,6 @@ YoutuberSubcribe 有三個視窗：
 
 - .NET Framework 4.8、WinForms
 - 直接引用上一篇 Rx 專案編譯出的 `Rx.dll`，使用其中的 `Subject<T>` 與 `Subscription<T>`
-- Repo：[https://github.com/XiaoXiaTian2/YoutuberSubcribe](https://github.com/XiaoXiaTian2/YoutuberSubcribe)
 
 # 架構與功能
 
@@ -218,7 +217,7 @@ private void unsubscribe_Click(object sender, EventArgs e)
 
 # 待改進
 
-1. **Rx.dll 以 HintPath 引用 repo 外的路徑**：`YoutuberSubcribe.csproj` 裡是 `<HintPath>..\EventHandlerPractice\Rx\bin\Debug\Rx.dll</HintPath>`，指向我本機另一個資料夾的編譯產物，repo 裡既沒有這個 dll，路徑也和 Rx repo 的名稱對不上。別人 clone 下來會找不到 `Rx` 命名空間而無法編譯。修正方向：把兩個專案放進同一個方案改用 ProjectReference，或在 README 說明要先 clone 並編譯 Rx。
+1. **Rx.dll 以 HintPath 引用另一個專案的編譯產物**：`YoutuberSubcribe.csproj` 裡是 `<HintPath>..\EventHandlerPractice\Rx\bin\Debug\Rx.dll</HintPath>`，直接指向另一個資料夾 `bin\Debug` 底下的 dll。Rx 沒有先編譯、資料夾被搬動或改名，就會找不到 `Rx` 命名空間而無法編譯；Rx 改了程式也不會自動重新建置。修正方向：把兩個專案放進同一個方案，改用 ProjectReference。
 2. **取消訂閱後沒有從 `channelUserMap` 移除**：`UserForm.unsubscribe_Click` 只取消了 Subscription、移除畫面上那一列，對應頻道的 `List<User>` 裡仍然留著這個人。下一次在同頻道訂閱或切換回這個頻道時，`renderChannelList` 會把已取消的人重新畫出來，看起來像是還在訂閱。修正方向：取消時一併從清單移除。
 3. **重新開啟訂閱者視窗後，舊的訂閱者無法取消**：`NotifyForm.button2_Click` 每次都 `new UserForm`，而 `channelUserMap` 是 `UserForm` 的欄位，關掉視窗再開就是一份空的清單。但之前建立的 Subscription 仍然掛在 `Channel.Subject` 上，那些訂閱者會繼續收到影片、繼續在消息大廳發訊息，卻再也沒有按鈕可以取消。修正方向：把訂閱者清單移到 `Youtuber` 或 `Channel` 這類和視窗生命週期無關的物件上。
 

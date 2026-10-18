@@ -22,7 +22,6 @@ StudentManagement 是一個單視窗的學生資料管理程式：上方表單�
 
 - 平台：**.NET Framework 4.8**、WPF
 - NuGet 套件：`Fody` 6.9.3、`PropertyChanged.Fody` 4.1.0（`FodyWeavers.xml` 啟用 `<PropertyChanged />`）
-- Repo：[https://github.com/XiaoXiaTian2/StudentManagement](https://github.com/XiaoXiaTian2/StudentManagement)
 
 # 架構與功能
 

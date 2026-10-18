@@ -1,5 +1,5 @@
 ---
-title: C# 課程實作總整理：8 個 GitHub 專案的知識地圖
+title: C# 課程實作總整理：8 個練習專案的知識地圖
 date: 2026-10-18 21:30:00
 updated: 2026-10-18 21:30:00
 cover: assets/csharp-cover.jpg
@@ -19,18 +19,18 @@ tags:
 
 # 專案一覽
 
-依最後 commit 日期排序，全部都是 **.NET Framework 4.8** 專案。
+依學習順序排列，全部都是 **.NET Framework 4.8** 專案。
 
-| 日期 | 專案 | 類型 | 主題 |
+| 時間 | 專案 | 類型 | 主題 |
 | --- | --- | --- | --- |
-| 2025-08 | [OrderSystem](https://github.com/XiaoXiaTian2/OrderSystem) | WinForms | 點餐系統，多種折扣策略，並串接 Gemini AI 推薦最划算的折扣 |
-| 2025-10 | [LinkedList](https://github.com/XiaoXiaTian2/LinkedList) | Console | 自己實作 LinkedList、二元搜尋樹、Dictionary 與迭代器 |
-| 2025-11 | [Rx](https://github.com/XiaoXiaTian2/Rx) | Console | 觀察者模式、自製簡易版 Rx（Subject / Subscription） |
-| 2025-12 | [YoutuberSubcribe](https://github.com/XiaoXiaTian2/YoutuberSubcribe) | WinForms | 把自製 Rx 套用到「頻道訂閱與通知」情境 |
-| 2026-05 | [StudentManagement](https://github.com/XiaoXiaTian2/StudentManagement) | WPF | 學生資料增刪改，MVVM 搭配 MVP |
-| 2026-07 | [AccountingApp](https://github.com/XiaoXiaTian2/AccountingApp) | WinForms | 記帳本：記錄、圖片、圖表分析，規模最大的綜合專案 |
-| 2026-09 | [AutoMapper](https://github.com/XiaoXiaTian2/AutoMapper) | Console | 用反射與 Expression Tree 自己寫一個 AutoMapper |
-| 2026-10 | [ParallelProcessing](https://github.com/XiaoXiaTian2/ParallelProcessing) | Console | 千萬筆 CSV 平行讀寫與效能實驗 |
+| 2025-08 | OrderSystem | WinForms | 點餐系統，多種折扣策略，並串接 Gemini AI 推薦最划算的折扣 |
+| 2025-10 | LinkedList | Console | 自己實作 LinkedList、二元搜尋樹、Dictionary 與迭代器 |
+| 2025-11 | Rx | Console | 觀察者模式、自製簡易版 Rx（Subject / Subscription） |
+| 2025-12 | YoutuberSubcribe | WinForms | 把自製 Rx 套用到「頻道訂閱與通知」情境 |
+| 2026-05 | StudentManagement | WPF | 學生資料增刪改，MVVM 搭配 MVP |
+| 2026-07 | AccountingApp | WinForms | 記帳本：記錄、圖片、圖表分析，規模最大的綜合專案 |
+| 2026-09 | AutoMapper | Console | 用反射與 Expression Tree 自己寫一個 AutoMapper |
+| 2026-10 | ParallelProcessing | Console | 千萬筆 CSV 平行讀寫與效能實驗 |
 
 # 系列文目錄
 
@@ -182,7 +182,6 @@ await Task.WhenAll(tasks);
 | `LinkedList/BinaryTree/BFSIterator.cs` | 讀取 `Current` 時改寫了 `Tree.Root`，走訪一次樹就被破壞 |
 | `StudentManagement/Presenters/StudentPresenter.cs` | 沒有指定 `Id`，刪除時永遠刪到第一筆；建立 Student 時 Height 傳了兩次 |
 | `OrderSystem/AI/AIAgent.cs` | `requestModel` 是 static，每次請求都會累積前幾次的 prompt |
-| ParallelProcessing、AccountingApp | 依賴不在 repo 裡的 `CSV.dll`，且路徑寫死在本機磁碟，別人 clone 後無法編譯 |
 
 # 下一步
 
@@ -192,4 +191,3 @@ await Task.WhenAll(tasks);
 - **資料庫**：SQL 與 EF Core，取代目前的 CSV 儲存
 - **Web 後端**：ASP.NET Core Web API 與 DI 容器
 - **單元測試**：替自製資料結構補上測試，順便驗證上面那些 bug 的修正
-- **文件**：替每個 repo 補上 README

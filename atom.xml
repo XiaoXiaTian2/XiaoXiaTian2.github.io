@@ -13,16 +13,16 @@
     <category term="資料庫" />
     <entry>
         <id>https://xiaoxiatian2.github.io/20261018/csharp/csharp-course-review/</id>
-        <title>C# 課程實作總整理：8 個 GitHub 專案的知識地圖</title>
+        <title>C# 課程實作總整理：8 個練習專案的知識地圖</title>
         <link rel="alternate" href="https://xiaoxiatian2.github.io/20261018/csharp/csharp-course-review/"/>
         <content type="html">&lt;p&gt;這一年在 C# 課程中陸續完成了 8 個練習專案，這篇把它們一次整理起來，從程式碼回頭盤點學到了哪些知識點、還缺哪些，順便記錄重讀程式時發現的問題。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;h1 id=&#34;專案一覽&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#專案一覽&#34;&gt;#&lt;/a&gt; 專案一覽&lt;/h1&gt;
-&lt;p&gt;依最後 commit 日期排序，全部都是 &lt;strong&gt;.NET Framework 4.8&lt;/strong&gt; 專案。&lt;/p&gt;
+&lt;p&gt;依學習順序排列，全部都是 &lt;strong&gt;.NET Framework 4.8&lt;/strong&gt; 專案。&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;日期&lt;/th&gt;
+&lt;th&gt;時間&lt;/th&gt;
 &lt;th&gt;專案&lt;/th&gt;
 &lt;th&gt;類型&lt;/th&gt;
 &lt;th&gt;主題&lt;/th&gt;
@@ -31,49 +31,49 @@
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;2025-08&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9PcmRlclN5c3RlbQ==&#34;&gt;OrderSystem&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;OrderSystem&lt;/td&gt;
 &lt;td&gt;WinForms&lt;/td&gt;
 &lt;td&gt;點餐系統，多種折扣策略，並串接 Gemini AI 推薦最划算的折扣&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2025-10&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9MaW5rZWRMaXN0&#34;&gt;LinkedList&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;LinkedList&lt;/td&gt;
 &lt;td&gt;Console&lt;/td&gt;
 &lt;td&gt;自己實作 LinkedList、二元搜尋樹、Dictionary 與迭代器&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2025-11&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9SeA==&#34;&gt;Rx&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;Rx&lt;/td&gt;
 &lt;td&gt;Console&lt;/td&gt;
 &lt;td&gt;觀察者模式、自製簡易版 Rx（Subject / Subscription）&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2025-12&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9Zb3V0dWJlclN1YmNyaWJl&#34;&gt;YoutuberSubcribe&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;YoutuberSubcribe&lt;/td&gt;
 &lt;td&gt;WinForms&lt;/td&gt;
 &lt;td&gt;把自製 Rx 套用到「頻道訂閱與通知」情境&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2026-05&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9TdHVkZW50TWFuYWdlbWVudA==&#34;&gt;StudentManagement&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;StudentManagement&lt;/td&gt;
 &lt;td&gt;WPF&lt;/td&gt;
 &lt;td&gt;學生資料增刪改，MVVM 搭配 MVP&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2026-07&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9BY2NvdW50aW5nQXBw&#34;&gt;AccountingApp&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;AccountingApp&lt;/td&gt;
 &lt;td&gt;WinForms&lt;/td&gt;
 &lt;td&gt;記帳本：記錄、圖片、圖表分析，規模最大的綜合專案&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2026-09&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9BdXRvTWFwcGVy&#34;&gt;AutoMapper&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;AutoMapper&lt;/td&gt;
 &lt;td&gt;Console&lt;/td&gt;
 &lt;td&gt;用反射與 Expression Tree 自己寫一個 AutoMapper&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2026-10&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9QYXJhbGxlbFByb2Nlc3Npbmc=&#34;&gt;ParallelProcessing&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;ParallelProcessing&lt;/td&gt;
 &lt;td&gt;Console&lt;/td&gt;
 &lt;td&gt;千萬筆 CSV 平行讀寫與效能實驗&lt;/td&gt;
 &lt;/tr&gt;
@@ -256,10 +256,6 @@
 &lt;td&gt;&lt;code&gt;OrderSystem/AI/AIAgent.cs&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;requestModel&lt;/code&gt;  是 static，每次請求都會累積前幾次的 prompt&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;ParallelProcessing、AccountingApp&lt;/td&gt;
-&lt;td&gt;依賴不在 repo 裡的  &lt;code&gt;CSV.dll&lt;/code&gt; ，且路徑寫死在本機磁碟，別人 clone 後無法編譯&lt;/td&gt;
-&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1 id=&#34;下一步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步&#34;&gt;#&lt;/a&gt; 下一步&lt;/h1&gt;
@@ -269,14 +265,13 @@
 &lt;li&gt;&lt;strong&gt;資料庫&lt;/strong&gt;：SQL 與 EF Core，取代目前的 CSV 儲存&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Web 後端&lt;/strong&gt;：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL0FTUC5ORVQ=&#34;&gt;ASP.NET&lt;/span&gt; Core Web API 與 DI 容器&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;單元測試&lt;/strong&gt;：替自製資料結構補上測試，順便驗證上面那些 bug 的修正&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;文件&lt;/strong&gt;：替每個 repo 補上 README&lt;/li&gt;
 &lt;/ul&gt;
 </content>
         <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
         <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
+        <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
         <category term=".NET" scheme="https://xiaoxiatian2.github.io/tags/dotnet/" />
         <category term="學習筆記" scheme="https://xiaoxiatian2.github.io/tags/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" />
-        <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
         <category term="資料結構" scheme="https://xiaoxiatian2.github.io/tags/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" />
         <updated>2026-10-18T13:30:00.000Z</updated>
     </entry>
@@ -291,8 +286,7 @@
 &lt;li&gt;平台：&lt;strong&gt;.NET Framework 4.8&lt;/strong&gt;、Console&lt;/li&gt;
 &lt;li&gt;參考：自己寫的  &lt;code&gt;CSV&lt;/code&gt;  類別庫（ &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt; ），提供  &lt;code&gt;CSVHelper.Read&amp;lt;T&amp;gt;&lt;/code&gt;  與  &lt;code&gt;CSVHelper.WriteList&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;資料： &lt;code&gt;MOCK_DATA_&amp;#123;筆數&amp;#125;.csv&lt;/code&gt; ，欄位為  &lt;code&gt;id&lt;/code&gt; 、 &lt;code&gt;first_name&lt;/code&gt; 、 &lt;code&gt;last_name&lt;/code&gt; 、 &lt;code&gt;email&lt;/code&gt; 、 &lt;code&gt;gender&lt;/code&gt; 、 &lt;code&gt;ip_address&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;實驗環境（README 記載）：i7-8550U（4 核 8 執行緒）、32 GB RAM&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9QYXJhbGxlbFByb2Nlc3Npbmc=&#34;&gt;https://github.com/XiaoXiaTian2/ParallelProcessing&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;實驗環境：i7-8550U（4 核 8 執行緒）、32 GB RAM&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;table&gt;
@@ -315,15 +309,11 @@
 &lt;td&gt;&lt;code&gt;ListExtensions.cs&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;Medium&amp;lt;T&amp;gt;&lt;/code&gt;  擴充方法：計算中位數&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;README.md&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;各組實驗的數據記錄&lt;/td&gt;
-&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;程式流程：&lt;/p&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;計算批次數 → 清空輸出資料夾 → 每批一個 Task.Run&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  每批：讀取第 N 段資料（計時）→ lock 後寫入輸出檔（計時）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;→ Task.WhenAll 等全部完成 → 輸出讀取、寫入時間的中位數與總時間&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;repo 只有 3 個 commit，剛加入專案檔案時  &lt;code&gt;Main&lt;/code&gt;  還是空的，最後一個 commit「分批上鎖寫入」才是現在的平行版本，所以 README 中「循序讀寫」那一組實驗所用的程式並不在 repo 裡，以下對程式碼的說明都以現在的平行版本為準。&lt;/p&gt;
+&lt;p&gt;一開始先寫了循序讀寫的版本當作對照組，之後才改成現在的分批平行版本，以下的程式碼都是平行版本。&lt;/p&gt;
 &lt;h1 id=&#34;核心知識點&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#核心知識點&#34;&gt;#&lt;/a&gt; 核心知識點&lt;/h1&gt;
 &lt;h2 id=&#34;1-分批-taskrun-taskwhenall&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-分批-taskrun-taskwhenall&#34;&gt;#&lt;/a&gt; 1. 分批 + Task.Run + Task.WhenAll&lt;/h2&gt;
 &lt;p&gt;一次把千萬筆讀進記憶體再處理，記憶體與時間都很可觀，所以先依  &lt;code&gt;batchSize&lt;/code&gt;  切成多批，每批交給一個 Task 在執行緒集區上跑， &lt;code&gt;Main&lt;/code&gt;  本身是  &lt;code&gt;async Task&lt;/code&gt; ，最後  &lt;code&gt;await Task.WhenAll&lt;/code&gt;  等所有批次完成：&lt;/p&gt;
@@ -336,22 +326,22 @@
 &lt;h2 id=&#34;3-lock-保護共用的寫入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-lock-保護共用的寫入&#34;&gt;#&lt;/a&gt; 3. lock 保護共用的寫入&lt;/h2&gt;
 &lt;p&gt;讀取可以各讀各的，但所有批次都寫到同一個輸出檔，同時寫入會互相干擾，所以寫入的部分用  &lt;code&gt;lock&lt;/code&gt;  包起來，一次只讓一個 Task 進去：&lt;/p&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//string outputPath = $&amp;quot;&amp;#123;outputDir&amp;#125;/&amp;#123;count&amp;#125;/MOCK_DATA_&amp;#123;count&amp;#125;_&amp;#123;batchNumber + 1&amp;#125;.csv&amp;quot;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; outputPath = &lt;span class=&#34;string&#34;&gt;$&amp;quot;&lt;span class=&#34;subst&#34;&gt;&amp;#123;outputDir&amp;#125;&lt;/span&gt;/&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;/MOCK_DATA_&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;.csv&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;stopwatch.Restart();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;lock&lt;/span&gt; (a)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CSVHelper.WriteList(outputPath, batch);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;writeTimes[batchNumber] = stopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;被註解掉的那行是「每批寫成獨立檔案」的版本；那種寫法各批的輸出檔互不相干，本來就不需要 lock。README 的「無 lock」與「lock」兩組數據，推測就是在比較這兩種情境；不過 README 沒有寫明無 lock 版的寫檔方式，repo 裡也沒有那個版本的程式，無法確認。&lt;/p&gt;
+&lt;p&gt;被註解掉的那行是「每批寫成獨立檔案」的版本；那種寫法各批的輸出檔互不相干，本來就不需要 lock。後面「無 lock」與「lock」兩組數據，比較的大致就是這兩種情境，可惜當時沒有把無 lock 版的寫檔方式記下來。&lt;/p&gt;
 &lt;h2 id=&#34;4-用-linq-寫中位數擴充方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-用-linq-寫中位數擴充方法&#34;&gt;#&lt;/a&gt; 4. 用 LINQ 寫中位數擴充方法&lt;/h2&gt;
 &lt;p&gt;各批次的讀寫時間會有落差，我用中位數來代表「一批通常要多久」，好處是不會被少數特別慢的批次拉偏。寫成泛型擴充方法，透過  &lt;code&gt;selector&lt;/code&gt;  決定要取哪個欄位：&lt;/p&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Medium&lt;/span&gt;&amp;lt;&lt;span class=&#34;title&#34;&gt;T&lt;/span&gt;&amp;gt;(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt; IEnumerable&amp;lt;T&amp;gt; list, Func&amp;lt;T, &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt;&amp;gt; selector&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; doubleList = list.Select(selector).OrderBy(x =&amp;gt; x).ToList();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; count = doubleList.Count();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; middle = count / &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (count % &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt; == &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; rent = doubleList.ElementAt(middle - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) + doubleList.ElementAt(middle);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; rent / &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; doubleList.ElementAt(middle);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; readTimeMedium = readTimes.Medium(x =&amp;gt; x);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; writeTimeMedium = writeTimes.Medium(x =&amp;gt; x);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; totalTime = totalStopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Console.WriteLine(&lt;span class=&#34;string&#34;&gt;$&amp;quot;| 筆數 | 總讀取時間 | 總寫入時間 | 總時間 |\n| &lt;span class=&#34;subst&#34;&gt;&amp;#123;count.ToString(&lt;span class=&#34;string&#34;&gt;&amp;quot;N0&amp;quot;&lt;/span&gt;)&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;readTimeMedium&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;writeTimeMedium&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;totalTime&amp;#125;&lt;/span&gt; |&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;輸出直接是 Markdown 表格的一列，跑完就能貼進 README。&lt;/p&gt;
+&lt;p&gt;輸出直接是 Markdown 表格的一列，跑完就能貼進筆記。&lt;/p&gt;
 &lt;h2 id=&#34;5-實驗設計與數據&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-實驗設計與數據&#34;&gt;#&lt;/a&gt; 5. 實驗設計與數據&lt;/h2&gt;
-&lt;p&gt;README 裡共有四組實驗：&lt;/p&gt;
+&lt;p&gt;一共做了四組實驗：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;循序讀寫&lt;/strong&gt;：從 1 萬筆到 1,500 萬筆，記錄讀取、寫入、總時間與記憶體用量&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;平行、無 lock&lt;/strong&gt;（批次 100 萬筆）：100 萬到 1,500 萬筆&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;平行、有 lock&lt;/strong&gt;（批次 100 萬筆）：同樣的筆數區間&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;實驗 2：批次大小&lt;/strong&gt;：批次從 100 萬到 700 萬筆，目標筆數 500 萬與 1,000 萬&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;另外還有一段「以 350 萬為一批次測試」的零散記錄，格式不完整，這裡就不引用。&lt;/p&gt;
-&lt;p&gt;以下節錄前三組的「總完成時間」欄位（單位：秒，數字照抄 README）。平行的兩組表格沒有表頭，這裡依循序表的欄位順序（筆數、讀取、寫入、總完成時間、記憶體）解讀：&lt;/p&gt;
+&lt;p&gt;另外還做過一次「以 350 萬為一批次」的零散測試，紀錄不完整，這裡就省略。&lt;/p&gt;
+&lt;p&gt;以下節錄前三組的「總完成時間」（單位：秒）：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -505,20 +495,20 @@
 &lt;li&gt;循序版本在 1,500 萬筆那一列沒有數據；記憶體用量隨筆數增加，到 1,400 萬筆時記錄為 3,700 MB&lt;/li&gt;
 &lt;li&gt;實驗 2 目標 1,000 萬筆時，批次 350 萬筆的兩次測試（77.893 / 79.492）是總時間最短的；批次到 500 萬、700 萬時，讀寫時間跳到 60 以上，總時間也回到 120 以上&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;讀這些數據時有兩點要注意。第一，以目前的  &lt;code&gt;Program.cs&lt;/code&gt;  來看，平行版本輸出的「讀取／寫入」是&lt;strong&gt;每批時間的中位數&lt;/strong&gt;，不是全部批次的加總，所以只有「總完成時間」能和循序版本直接比較，上面的對照表也只放這一欄。第二，實驗 2 的表頭標示為 ms，但程式是用  &lt;code&gt;ElapsedMilliseconds / 1000.0&lt;/code&gt;  換算後輸出；如果這組數據也是同一支程式跑出來的，數值實際上應該是秒。&lt;/p&gt;
+&lt;p&gt;讀這些數據時有兩點要注意。第一，平行版本輸出的「讀取／寫入」是&lt;strong&gt;每批時間的中位數&lt;/strong&gt;，不是全部批次的加總，所以只有「總完成時間」能和循序版本直接比較，上面的對照表也只放這一欄。第二，實驗 2 的表頭標示為 ms，但程式是用  &lt;code&gt;ElapsedMilliseconds / 1000.0&lt;/code&gt;  換算成秒後輸出，所以這組數值的單位應該是秒，表頭的 ms 是標錯了。&lt;/p&gt;
 &lt;h1 id=&#34;待改進&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#待改進&#34;&gt;#&lt;/a&gt; 待改進&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;clone 後無法編譯與執行&lt;/strong&gt;： &lt;code&gt;ParallelProcessing.csproj&lt;/code&gt;  參考的  &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt;  不在 repo 裡； &lt;code&gt;Program.cs&lt;/code&gt;  的輸入檔  &lt;code&gt;E:/csharp_course/data/MOCK_DATA_&amp;#123;count&amp;#125;.csv&lt;/code&gt;  與輸出資料夾  &lt;code&gt;E:/csharp_course/outputData&lt;/code&gt;  也寫死在本機。別人 clone 後既無法編譯，也沒有測試資料可跑。修正方向：把 CSV 專案納入 solution，路徑改由命令列參數傳入，並附上產生測試資料的方式。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;所有批次寫同一個檔案，輸出順序不固定&lt;/strong&gt;：每批獨立檔名的那行被註解掉，現在所有 Task 都寫入同一個  &lt;code&gt;MOCK_DATA_&amp;#123;count&amp;#125;.csv&lt;/code&gt; 。lock 只保證一次一批，不保證批次的先後；哪一批先讀完就先寫，所以輸出檔的資料列順序可能與輸入不同。另外  &lt;code&gt;CSVHelper&lt;/code&gt;  的原始碼不在 repo，我無法從這裡確認  &lt;code&gt;WriteList&lt;/code&gt;  對既有檔案是附加還是覆寫；若是覆寫，最後只會留下最後寫入的那一批。修正方向：恢復每批獨立檔名，或依批次編號依序寫入。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;路徑與參考寫死&lt;/strong&gt;： &lt;code&gt;CSV.dll&lt;/code&gt;  以  &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt;  的相對路徑參考，輸入檔  &lt;code&gt;E:/csharp_course/data/MOCK_DATA_&amp;#123;count&amp;#125;.csv&lt;/code&gt;  與輸出資料夾  &lt;code&gt;E:/csharp_course/outputData&lt;/code&gt;  也寫死在程式裡，換一台電腦或搬動資料夾就無法編譯、執行。修正方向：把 CSV 專案放進同一個方案改用專案參考，路徑改由命令列參數傳入，並保留產生測試資料的方式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;所有批次寫同一個檔案，輸出順序不固定&lt;/strong&gt;：每批獨立檔名的那行被註解掉，現在所有 Task 都寫入同一個  &lt;code&gt;MOCK_DATA_&amp;#123;count&amp;#125;.csv&lt;/code&gt; 。lock 只保證一次一批，不保證批次的先後；哪一批先讀完就先寫，所以輸出檔的資料列順序可能與輸入不同。另外要確認  &lt;code&gt;CSVHelper.WriteList&lt;/code&gt;  對既有檔案是附加還是覆寫；若是覆寫，最後只會留下最後寫入的那一批。修正方向：恢復每批獨立檔名，或依批次編號依序寫入。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;寫入時間包含了等待 lock 的時間&lt;/strong&gt;： &lt;code&gt;stopwatch.Restart()&lt;/code&gt;  放在  &lt;code&gt;lock (a)&lt;/code&gt;  之前，所以  &lt;code&gt;writeTimes&lt;/code&gt;  量到的是「排隊等鎖 + 實際寫入」。有 lock 版本的寫入時間偏高，有一部分可能只是排隊，並不代表寫入本身變慢。若要分開觀察，應該在取得鎖之後才開始計時，另外記錄等待時間。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;輸出標籤與實際計算不符&lt;/strong&gt;： &lt;code&gt;Console.WriteLine&lt;/code&gt;  的表頭寫「總讀取時間」「總寫入時間」，實際印出的卻是  &lt;code&gt;readTimes.Medium(...)&lt;/code&gt; 、 &lt;code&gt;writeTimes.Medium(...)&lt;/code&gt;  的中位數。直接貼進 README 後，很容易誤把它當成加總，和循序版本的讀寫秒數放在一起比較。應該把表頭改成「讀取中位數」「寫入中位數」，或另外輸出加總。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出標籤與實際計算不符&lt;/strong&gt;： &lt;code&gt;Console.WriteLine&lt;/code&gt;  的表頭寫「總讀取時間」「總寫入時間」，實際印出的卻是  &lt;code&gt;readTimes.Medium(...)&lt;/code&gt; 、 &lt;code&gt;writeTimes.Medium(...)&lt;/code&gt;  的中位數。直接貼進筆記後，很容易誤把它當成加總，和循序版本的讀寫秒數放在一起比較。應該把表頭改成「讀取中位數」「寫入中位數」，或另外輸出加總。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;小結&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小結&#34;&gt;#&lt;/a&gt; 小結&lt;/h1&gt;
-&lt;p&gt;這個實驗讓我實際摸到  &lt;code&gt;async Task Main&lt;/code&gt; 、 &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt; 、閉包陷阱和  &lt;code&gt;lock&lt;/code&gt; ，也體會到「量測方式」本身就會影響結論：計時從哪裡開始、取中位數還是加總、單位標示是否正確，都會改變數據的意義。以後做效能比較，我會先把實驗程式、量測定義和資料產生方式一起放進 repo，讓結果可以被重現。&lt;/p&gt;
+&lt;p&gt;這個實驗讓我實際摸到  &lt;code&gt;async Task Main&lt;/code&gt; 、 &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt; 、閉包陷阱和  &lt;code&gt;lock&lt;/code&gt; ，也體會到「量測方式」本身就會影響結論：計時從哪裡開始、取中位數還是加總、單位標示是否正確，都會改變數據的意義。以後做效能比較，我會把每一組的實驗程式、量測定義和資料產生方式一起記下來，讓結果可以被重現。&lt;/p&gt;
 &lt;p&gt;這也是 C# 實作系列的最後一篇，感謝看到這裡。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/basics/automapper/&#34; title=&#34;【C# 實作 07】AutoMapper：用反射與 Expression Tree 自己寫 Mapper&#34;&gt;【C# 實作 07】AutoMapper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
@@ -546,7 +536,6 @@
 &lt;ul&gt;
 &lt;li&gt;平台：&lt;strong&gt;.NET Framework 4.8&lt;/strong&gt;、Console&lt;/li&gt;
 &lt;li&gt;沒有使用任何 NuGet 套件，只用  &lt;code&gt;System.Reflection&lt;/code&gt;  與  &lt;code&gt;System.Linq.Expressions&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9BdXRvTWFwcGVy&#34;&gt;https://github.com/XiaoXiaTian2/AutoMapper&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;AutoMapper/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Mapper.cs              進入點 MapDest&amp;lt;TSource, TDest&amp;gt;，分派 Converter 與 Expressioner&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── MapperConfig.cs        ForMember 設定，記錄「目標屬性 → 來源運算式」&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Converters/            依目標型別分類的轉換器&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   ├── AConverter.cs        抽象基底&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   └── Basic / Enum / Array / Enumerable / Class Converter&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Expressions/           Expression Tree 求值器，每種節點一個類別&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   ├── AExpression.cs       抽象基底&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   └── Member / Constant / Parameter / Unary / Binary / MethodCall&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│       / New / MemberInit / ListInit Expressioner&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Extensions/            GetPropertyType、GetProperty、OrderBy2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Sorters/QuickSorter.cs 以 Expression 指定欄位的快速排序&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── Models/                UserDTO / UserDAO / SchoolDTO / SchoolDAO 測試資料&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -599,7 +588,7 @@
 &lt;p&gt;這個專案讓我把「反射」和「Expression Tree」從聽過變成真的會用：用命名慣例加  &lt;code&gt;Activator.CreateInstance&lt;/code&gt;  做分派、用遞迴處理巢狀型別、用  &lt;code&gt;Expression&amp;lt;Func&amp;lt;&amp;gt;&amp;gt;&lt;/code&gt;  讀出 Lambda 的結構再自己求值。它離真正的 AutoMapper 還很遠（沒有快取、每次轉換都在做反射），但先自己造過一次輪子，回頭看套件的 API 設計就清楚多了。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/projects/accounting-app/&#34; title=&#34;【C# 實作 06】AccountingApp：記帳本的 MVP、Repository 與 Builder&#34;&gt;【C# 實作 06】AccountingApp&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/basics/parallel-processing/&#34; title=&#34;【C# 實作 08】ParallelProcessing：千萬筆 CSV 平行讀寫實驗&#34;&gt;【C# 實作 08】ParallelProcessing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -607,9 +596,9 @@
         <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
         <category term="語言基礎" scheme="https://xiaoxiatian2.github.io/categories/csharp/basics/" />
         <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
+        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
         <category term="Expression Tree" scheme="https://xiaoxiatian2.github.io/tags/Expression-Tree/" />
-        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <updated>2026-10-18T13:10:00.000Z</updated>
     </entry>
     <entry>
@@ -651,7 +640,6 @@
 &lt;li&gt;NuGet 套件： &lt;code&gt;AutoMapper&lt;/code&gt;  10.0.0&lt;/li&gt;
 &lt;li&gt;參考： &lt;code&gt;System.Windows.Forms.DataVisualization&lt;/code&gt; （圖表）、自己寫的  &lt;code&gt;CSV&lt;/code&gt;  類別庫（ &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt; ）&lt;/li&gt;
 &lt;li&gt;資料儲存：每天一個資料夾，裡面放  &lt;code&gt;data/data.csv&lt;/code&gt;  與  &lt;code&gt;img/&lt;/code&gt;  圖片&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9BY2NvdW50aW5nQXBw&#34;&gt;https://github.com/XiaoXiaTian2/AccountingApp&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;AccountingApp/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Views/            記一筆、記帳本、帳戶分析、圖表分析、ImageForm、SingletonForm&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Components/       Navbar（UserControl）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Contracts/        各畫面的 IXxxPresenter / IXxxView，以及 IChartBuilder&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Presenters/       AddAccountPresenter、ReordBookPresenter、AnalyzePresenter、ChartPresenter&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Services/         AnalyzeService：篩選、分組、加總&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Builders/         LineChartBuilder、PieChartBuilder、StackedColumnChartBuilder&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Models/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   ├── DAOs/         RecordModelDAO（對應 CSV 欄位）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   ├── DTOs/         RecordModelDTO、AccountBookDTO、AnalyzeDTO、ComboxDataDTO&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   ├── Repositories/ IRecordRepository / RecordRepository、IDataRepository / DataRepository&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;│   └── RecordModel.cs、DataModel.cs&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Attributes/       ComboBoxColumnAttribute、ImageColumnAttribute&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Extensions/       DataGridViewExtension、FlowLayoutPanelExtension&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── Utility/          ImgCompressor、FormExtension（DebounceClick）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -700,7 +688,7 @@
 &lt;p&gt;Navbar 本身則用  &lt;code&gt;Assembly.GetExecutingAssembly().DefinedTypes&lt;/code&gt;  掃描整個 Assembly，找出「繼承 Form 且含有  &lt;code&gt;navbar1&lt;/code&gt;  欄位」的類別，自動產生按鈕。因為 Form 的類別名稱就是中文頁名，按鈕文字直接用  &lt;code&gt;type.Name&lt;/code&gt; ；新增頁面時只要在 Form 上拖一個 Navbar，選單就會自動出現。&lt;/p&gt;
 &lt;h1 id=&#34;待改進&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#待改進&#34;&gt;#&lt;/a&gt; 待改進&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;clone 後無法編譯&lt;/strong&gt;： &lt;code&gt;AccountingApp.csproj&lt;/code&gt;  參考  &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt; ，這個 CSV 類別庫不在 repo 裡， &lt;code&gt;RecordRepository&lt;/code&gt; 、 &lt;code&gt;DataRepository&lt;/code&gt;  與幾個 View 都  &lt;code&gt;using CSV;&lt;/code&gt; 。別人 clone 下來會缺少參考而編譯失敗。修正方向：把 CSV 專案一起放進 solution 用專案參考，或打包成 NuGet。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CSV 類別庫以 dll 路徑參考&lt;/strong&gt;： &lt;code&gt;AccountingApp.csproj&lt;/code&gt;  參考  &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt; ， &lt;code&gt;RecordRepository&lt;/code&gt; 、 &lt;code&gt;DataRepository&lt;/code&gt;  與幾個 View 都  &lt;code&gt;using CSV;&lt;/code&gt; 。CSV 專案沒有先編譯，或資料夾位置不同，就會缺少參考而編譯失敗。修正方向：把 CSV 專案一起放進方案改用專案參考，或打包成 NuGet。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;資料路徑寫死在本機磁碟&lt;/strong&gt;： &lt;code&gt;Models/Repositories/RecordRepository.cs&lt;/code&gt;  與  &lt;code&gt;Presenters/AddAccountPresenter.cs&lt;/code&gt;  都寫死  &lt;code&gt;baseFolder = @&amp;quot;E:\csharp_course\accounting&amp;quot;&lt;/code&gt; （ &lt;code&gt;Utility/AcoountingTargetHelper.cs&lt;/code&gt;  也有一份）。沒有 E 槽或資料夾結構不同的電腦上，存檔與讀檔都會失敗。可以改成讀  &lt;code&gt;App.config&lt;/code&gt; ，或預設放在  &lt;code&gt;AppDomain.CurrentDomain.BaseDirectory&lt;/code&gt;  底下。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt; &lt;code&gt;DebounceClick&lt;/code&gt;  的 static timer 只會執行第一次的 callback&lt;/strong&gt;： &lt;code&gt;Utility/FormExtension.cs&lt;/code&gt;  的  &lt;code&gt;timer&lt;/code&gt;  是 static 欄位，只有在  &lt;code&gt;timer == null&lt;/code&gt;  時才用當下的  &lt;code&gt;callback&lt;/code&gt;  建立  &lt;code&gt;System.Threading.Timer&lt;/code&gt; ，之後的呼叫只做  &lt;code&gt;timer.Change(due, -1)&lt;/code&gt; 。也就是說，之後傳入不同的 callback（或不同的 Form）都不會生效，到期時仍執行第一次綁定的那個；兩個多載還共用同一個 timer。目前只有  &lt;code&gt;記帳本.button1_Click&lt;/code&gt;  一處呼叫，而且 lambda 每次都讀同一個 Form 的控制項，所以還看不出症狀，但只要第二個地方使用就會出錯。修正方向：以 Form 或按鈕為 key 各自保存 timer，或每次都更新要執行的 callback。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;刪除後重繪會因圖片路徑為 null 而丟例外&lt;/strong&gt;：刪除流程用  &lt;code&gt;Img1&lt;/code&gt;  當識別 key（ &lt;code&gt;RecordRepository.DeleteAccount&lt;/code&gt;  以  &lt;code&gt;rec.Img1 != recordDAO.Img1&lt;/code&gt;  過濾， &lt;code&gt;EditRecords&lt;/code&gt;  也用  &lt;code&gt;Img1&lt;/code&gt;  找目標）。因為新增時圖片檔名用  &lt;code&gt;Guid.NewGuid()&lt;/code&gt; ，目前 key 不會重複，但識別依賴檔案路徑本身就很脆弱。更直接的問題在  &lt;code&gt;Views/記帳本.cs&lt;/code&gt; ： &lt;code&gt;OnDeleteAccount&lt;/code&gt;  把 DTO 轉回  &lt;code&gt;RecordModel&lt;/code&gt;  時漏掉了  &lt;code&gt;Img1&lt;/code&gt; 、 &lt;code&gt;Img2&lt;/code&gt; ，接著  &lt;code&gt;dataGridView1_CellDoubleClick&lt;/code&gt;  呼叫  &lt;code&gt;ReRender()&lt;/code&gt; ，對每一列執行  &lt;code&gt;ImageSet(rows[i].Cells[&amp;quot;Img1&amp;quot;].Value?.ToString())&lt;/code&gt; ，傳入 null 給  &lt;code&gt;File.ReadAllBytes&lt;/code&gt;  會丟出例外。也就是刪除後只要還有剩下的資料，重繪就會失敗。修正方向：替記錄加上獨立的 Id 欄位，並在  &lt;code&gt;OnDeleteAccount&lt;/code&gt;  補上圖片路徑。&lt;/li&gt;
@@ -709,7 +697,7 @@
 &lt;p&gt;AccountingApp 是我第一次把 MVP、Repository、Builder、DTO/DAO 分層、AutoMapper、反射與 LINQ 全部放進同一個專案。分層後各畫面確實比較好擴充，例如新增圖表只要加一個 Builder；但重讀時也看到不少「能跑但脆弱」的地方：寫死的路徑、外部 DLL、用路徑當識別、複製貼上的篩選邏輯。這些都是下一版要優先整理的。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/desktop/student-management/&#34; title=&#34;【C# 實作 05】StudentManagement：WPF 的 MVVM 搭配 MVP&#34;&gt;【C# 實作 05】StudentManagement&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/basics/automapper/&#34; title=&#34;【C# 實作 07】AutoMapper：用反射與 Expression Tree 自己寫 Mapper&#34;&gt;【C# 實作 07】AutoMapper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -735,7 +723,6 @@
 &lt;ul&gt;
 &lt;li&gt;平台：&lt;strong&gt;.NET Framework 4.8&lt;/strong&gt;、WPF&lt;/li&gt;
 &lt;li&gt;NuGet 套件： &lt;code&gt;Fody&lt;/code&gt;  6.9.3、 &lt;code&gt;PropertyChanged.Fody&lt;/code&gt;  4.1.0（ &lt;code&gt;FodyWeavers.xml&lt;/code&gt;  啟用  &lt;code&gt;&amp;lt;PropertyChanged /&amp;gt;&lt;/code&gt; ）&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9TdHVkZW50TWFuYWdlbWVudA==&#34;&gt;https://github.com/XiaoXiaTian2/StudentManagement&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;StudentManagement/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── MainWindow.xaml / .xaml.cs      View：XAML 版面，DataContext 指向 MainViewModel&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── MainViewModel.cs                ViewModel，同時實作 MVP 的 IStudentView&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Presenters/StudentPresenter.cs  Presenter：持有 StudentDTO 清單，處理增刪&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Contracts/StudentContract.cs    IStudentPresenter / IStudentView 介面&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── DTOs/StudentDTO.cs              Presenter 端使用的資料物件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Student.cs                      畫面上的學生物件，含 IsEditable 等 UI 狀態&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── RelayCommand.cs                 ICommand 實作（含泛型版）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── Converters/InverseBooleanToVisibilityConverter.cs  bool 轉 Visibility&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -812,7 +799,7 @@
 &lt;p&gt;這個專案讓我從 WinForms 的事件驅動轉換到 WPF 的 Binding 思維：Command 取代 Click、Converter 取代手動切換 Visible、Style 取代逐一設定屬性。把 MVP 的 Presenter 留下來、讓 ViewModel 實作 View 介面，是我自己嘗試的組合，職責確實比較清楚；但重讀後也發現資料識別（Id）和雙向同步沒有處理好，這是之後要補的基本功。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/desktop/youtuber-subscribe/&#34; title=&#34;【C# 實作 04】YoutuberSubcribe：把自製 Rx 套用到 WinForms&#34;&gt;【C# 實作 04】YoutuberSubcribe&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/projects/accounting-app/&#34; title=&#34;【C# 實作 06】AccountingApp：記帳本的 MVP、Repository 與 Builder&#34;&gt;【C# 實作 06】AccountingApp&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -841,7 +828,6 @@
 &lt;ul&gt;
 &lt;li&gt;.NET Framework 4.8、WinForms&lt;/li&gt;
 &lt;li&gt;直接引用上一篇 Rx 專案編譯出的  &lt;code&gt;Rx.dll&lt;/code&gt; ，使用其中的  &lt;code&gt;Subject&amp;lt;T&amp;gt;&lt;/code&gt;  與  &lt;code&gt;Subscription&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9Zb3V0dWJlclN1YmNyaWJl&#34;&gt;https://github.com/XiaoXiaTian2/YoutuberSubcribe&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;table&gt;
@@ -913,7 +899,7 @@
 &lt;p&gt;所有按鈕共用同一個  &lt;code&gt;unsubscribe_Click&lt;/code&gt; ，靠  &lt;code&gt;sender&lt;/code&gt;  和  &lt;code&gt;Tag&lt;/code&gt;  區分是哪一列，不需要為每個訂閱者各寫一個 lambda。&lt;/p&gt;
 &lt;h1 id=&#34;待改進&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#待改進&#34;&gt;#&lt;/a&gt; 待改進&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Rx.dll 以 HintPath 引用 repo 外的路徑&lt;/strong&gt;： &lt;code&gt;YoutuberSubcribe.csproj&lt;/code&gt;  裡是  &lt;code&gt;&amp;lt;HintPath&amp;gt;..\EventHandlerPractice\Rx\bin\Debug\Rx.dll&amp;lt;/HintPath&amp;gt;&lt;/code&gt; ，指向我本機另一個資料夾的編譯產物，repo 裡既沒有這個 dll，路徑也和 Rx repo 的名稱對不上。別人 clone 下來會找不到  &lt;code&gt;Rx&lt;/code&gt;  命名空間而無法編譯。修正方向：把兩個專案放進同一個方案改用 ProjectReference，或在 README 說明要先 clone 並編譯 Rx。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rx.dll 以 HintPath 引用另一個專案的編譯產物&lt;/strong&gt;： &lt;code&gt;YoutuberSubcribe.csproj&lt;/code&gt;  裡是  &lt;code&gt;&amp;lt;HintPath&amp;gt;..\EventHandlerPractice\Rx\bin\Debug\Rx.dll&amp;lt;/HintPath&amp;gt;&lt;/code&gt; ，直接指向另一個資料夾  &lt;code&gt;bin\Debug&lt;/code&gt;  底下的 dll。Rx 沒有先編譯、資料夾被搬動或改名，就會找不到  &lt;code&gt;Rx&lt;/code&gt;  命名空間而無法編譯；Rx 改了程式也不會自動重新建置。修正方向：把兩個專案放進同一個方案，改用 ProjectReference。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;取消訂閱後沒有從  &lt;code&gt;channelUserMap&lt;/code&gt;  移除&lt;/strong&gt;： &lt;code&gt;UserForm.unsubscribe_Click&lt;/code&gt;  只取消了 Subscription、移除畫面上那一列，對應頻道的  &lt;code&gt;List&amp;lt;User&amp;gt;&lt;/code&gt;  裡仍然留著這個人。下一次在同頻道訂閱或切換回這個頻道時， &lt;code&gt;renderChannelList&lt;/code&gt;  會把已取消的人重新畫出來，看起來像是還在訂閱。修正方向：取消時一併從清單移除。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;重新開啟訂閱者視窗後，舊的訂閱者無法取消&lt;/strong&gt;： &lt;code&gt;NotifyForm.button2_Click&lt;/code&gt;  每次都  &lt;code&gt;new UserForm&lt;/code&gt; ，而  &lt;code&gt;channelUserMap&lt;/code&gt;  是  &lt;code&gt;UserForm&lt;/code&gt;  的欄位，關掉視窗再開就是一份空的清單。但之前建立的 Subscription 仍然掛在  &lt;code&gt;Channel.Subject&lt;/code&gt;  上，那些訂閱者會繼續收到影片、繼續在消息大廳發訊息，卻再也沒有按鈕可以取消。修正方向：把訂閱者清單移到  &lt;code&gt;Youtuber&lt;/code&gt;  或  &lt;code&gt;Channel&lt;/code&gt;  這類和視窗生命週期無關的物件上。&lt;/li&gt;
 &lt;/ol&gt;
@@ -921,7 +907,7 @@
 &lt;p&gt;這個專案讓自製的 Rx 第一次有了「真正的使用者」：頻道訂閱用 Subject 表達業務關係，static 的 MessageHandler 則把多個視窗之間的通知解耦。也是在實際使用時才發現，訂閱的「狀態」放在哪裡很重要，跟著視窗走的資料，會在視窗關掉時和背後仍然存活的訂閱脫鉤。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/design-pattern/rx/&#34; title=&#34;【C# 實作 03】Rx：從觀察者模式到自製 Subject &amp;#x2F; Subscription&#34;&gt;【C# 實作 03】Rx&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/desktop/student-management/&#34; title=&#34;【C# 實作 05】StudentManagement：WPF 的 MVVM 搭配 MVP&#34;&gt;【C# 實作 05】StudentManagement&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -941,7 +927,7 @@
         <content type="html">&lt;p&gt;這篇整理委派、事件與觀察者模式的練習。從最經典的「報社與訂戶」寫起，接著用  &lt;code&gt;Action&amp;lt;T&amp;gt;&lt;/code&gt;  把它簡化，最後仿照 Reactive Extensions（Rx）的介面，自己做一個迷你版的 Subject 與 Subscription。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;h1 id=&#34;專案簡介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#專案簡介&#34;&gt;#&lt;/a&gt; 專案簡介&lt;/h1&gt;
-&lt;p&gt;Rx repo 裡有兩個專案：&lt;/p&gt;
+&lt;p&gt;這次練習分成兩個專案：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;EventHandlerPractice&lt;/strong&gt;（根目錄）：Console 程式，練習運算子多載、經典的  &lt;code&gt;ISubject&lt;/code&gt;  /  &lt;code&gt;IObeserver&lt;/code&gt;  觀察者模式&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Rx&lt;/strong&gt;（ &lt;code&gt;Rx/&lt;/code&gt;  子資料夾）：類別庫，自製的  &lt;code&gt;Subject&amp;lt;T&amp;gt;&lt;/code&gt; 、 &lt;code&gt;Observer&amp;lt;T&amp;gt;&lt;/code&gt; 、 &lt;code&gt;Subscription&amp;lt;T&amp;gt;&lt;/code&gt; ，下一篇的 YoutuberSubcribe 就是引用它&lt;/li&gt;
@@ -950,7 +936,6 @@
 &lt;ul&gt;
 &lt;li&gt;技術：.NET Framework 4.8&lt;/li&gt;
 &lt;li&gt;主題： &lt;code&gt;Action&amp;lt;T&amp;gt;&lt;/code&gt; 、 &lt;code&gt;event EventHandler&amp;lt;T&amp;gt;&lt;/code&gt; 、運算子多載、泛型限制條件、觀察者模式&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9SeA==&#34;&gt;https://github.com/XiaoXiaTian2/Rx&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Rx/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Program.cs             # EventHandlerPractice 的進入點&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Messenger.cs           # 用 List&amp;lt;Action&amp;lt;T&amp;gt;&amp;gt; 收集訂閱者，並多載 + 運算子&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── ISubject.cs            # 經典觀察者模式：主題介面&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── IObeserver.cs          # 經典觀察者模式：觀察者介面&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── NewspaperOffice.cs     # 報社（主題），也多載了 + 運算子&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── MilkSender.cs          # 送牛奶（主題）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Customer.cs            # 訂戶（觀察者）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── Rx/                    # 自製 Rx 類別庫&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ├── IObserver.cs       # OnNext / OnError / OnComplete&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ├── Observer.cs        # 用三個委派實作 IObserver&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ├── Subject.cs         # 管理觀察者、廣播資料&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ├── Subscription.cs    # 代表一次訂閱，可以取消&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    └── Program.cs         # 使用範例&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -993,7 +978,7 @@
 &lt;p&gt;從  &lt;code&gt;ISubject&lt;/code&gt;  /  &lt;code&gt;IObeserver&lt;/code&gt;  到  &lt;code&gt;Action&amp;lt;T&amp;gt;&lt;/code&gt; ，再到 Subject / Subscription，同一個「通知」的需求寫了三次，每一次都把耦合再降低一點。自己實作過之後，比較能理解 Rx 為什麼要把訂閱設計成一個可以取消的物件，以及 OnComplete、OnError 這些訊號存在的意義，也因此更清楚目前這個迷你版還缺了哪些部分。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/data-structure/linkedlist/&#34; title=&#34;【C# 實作 02】LinkedList：自製串列、二元搜尋樹、Dictionary 與迭代器&#34;&gt;【C# 實作 02】LinkedList&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/desktop/youtuber-subscribe/&#34; title=&#34;【C# 實作 04】YoutuberSubcribe：把自製 Rx 套用到 WinForms&#34;&gt;【C# 實作 04】YoutuberSubcribe&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1002,8 +987,8 @@
         <category term="設計模式" scheme="https://xiaoxiatian2.github.io/categories/csharp/design-pattern/" />
         <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
         <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
-        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <category term="委派" scheme="https://xiaoxiatian2.github.io/tags/%E5%A7%94%E6%B4%BE/" />
+        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <updated>2026-10-18T12:30:00.000Z</updated>
     </entry>
     <entry>
@@ -1017,9 +1002,8 @@
 &lt;ul&gt;
 &lt;li&gt;技術：.NET Framework 4.8、Console 應用程式&lt;/li&gt;
 &lt;li&gt;主題：泛型鏈結串列、二元搜尋樹（DFS / BFS）、雜湊表、 &lt;code&gt;IEnumerable&lt;/code&gt;  /  &lt;code&gt;IEnumerator&lt;/code&gt; 、集合初始化器&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9MaW5rZWRMaXN0&#34;&gt;https://github.com/XiaoXiaTian2/LinkedList&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;這個 repo 沒有單元測試， &lt;code&gt;Program.cs&lt;/code&gt;  裡留著很多註解掉的手動測試程式，也記錄了老師出的作業題目（例如「完成 BFS 的迭代模式（不可以汙染你的 Tree）」）。&lt;/p&gt;
+&lt;p&gt;這次沒有寫單元測試， &lt;code&gt;Program.cs&lt;/code&gt;  裡留著很多註解掉的手動測試程式，也記錄了老師出的作業題目（例如「完成 BFS 的迭代模式（不可以汙染你的 Tree）」）。&lt;/p&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1095,7 +1079,7 @@
 &lt;p&gt;自己寫一次才真正理解： &lt;code&gt;foreach&lt;/code&gt;  只是  &lt;code&gt;GetEnumerator&lt;/code&gt;  /  &lt;code&gt;MoveNext&lt;/code&gt;  /  &lt;code&gt;Current&lt;/code&gt;  的語法糖、集合初始化器只是一連串  &lt;code&gt;Add&lt;/code&gt; 、 &lt;code&gt;Dictionary&lt;/code&gt;  的效率來自 bucket 與負載因子。也因為是自己寫的，重讀時發現的邊界錯誤特別多，這正好說明這類資料結構最需要單元測試來保護。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;上一篇：&lt;a href=&#34;/20261018/csharp/projects/order-system/&#34; title=&#34;【C# 實作 01】OrderSystem：Strategy 折扣引擎與 Gemini Function Calling&#34;&gt;【C# 實作 01】OrderSystem&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/design-pattern/rx/&#34; title=&#34;【C# 實作 03】Rx：從觀察者模式到自製 Subject &amp;#x2F; Subscription&#34;&gt;【C# 實作 03】Rx&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1103,9 +1087,9 @@
         <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
         <category term="資料結構" scheme="https://xiaoxiatian2.github.io/categories/csharp/data-structure/" />
         <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
+        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <category term="學習筆記" scheme="https://xiaoxiatian2.github.io/tags/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" />
         <category term="資料結構" scheme="https://xiaoxiatian2.github.io/tags/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" />
-        <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
         <updated>2026-10-18T12:20:00.000Z</updated>
     </entry>
     <entry>
@@ -1120,9 +1104,8 @@
 &lt;li&gt;技術：.NET Framework 4.8、WinForms&lt;/li&gt;
 &lt;li&gt;套件：Newtonsoft.Json（菜單與折扣規則序列化）、Meziantou.Framework.Win32.CredentialManager（讀取 API Key）&lt;/li&gt;
 &lt;li&gt;AI：Gemini API（ &lt;code&gt;gemini-2.5-flash&lt;/code&gt; ）的 Function Calling&lt;/li&gt;
-&lt;li&gt;Repo：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1hpYW9YaWFUaWFuMi9PcmRlclN5c3RlbQ==&#34;&gt;https://github.com/XiaoXiaTian2/OrderSystem&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;菜單與 22 種折扣規則都放在  &lt;code&gt;Menu.json&lt;/code&gt; ，路徑寫在  &lt;code&gt;App.config&lt;/code&gt;  的  &lt;code&gt;Menu&lt;/code&gt;  設定裡（目前是我本機的絕對路徑，clone 下來要先改成自己的位置）。&lt;/p&gt;
+&lt;p&gt;菜單與 22 種折扣規則都放在  &lt;code&gt;Menu.json&lt;/code&gt; ，路徑寫在  &lt;code&gt;App.config&lt;/code&gt;  的  &lt;code&gt;Menu&lt;/code&gt;  設定裡（目前是本機的絕對路徑，換電腦執行要先改成實際位置）。&lt;/p&gt;
 &lt;h1 id=&#34;架構與功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架構與功能&#34;&gt;#&lt;/a&gt; 架構與功能&lt;/h1&gt;
 &lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;OrderSystem/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Form1.cs                 # 主畫面：菜單勾選、折扣下拉選單、AI 推薦開關&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Extension.cs             # 擴充方法：依菜單動態產生 FlowLayoutPanel 與控制項&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Order.cs                 # 保存目前的訂單明細、計算總價&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Discount.cs              # 清掉舊的折扣/贈品列，交給 DiscountContext 重新計算&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── DiscountContext.cs       # 依「手動」或「AI 推薦」決定要用哪個 Strategy&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── ShowPanel.cs             # 用反射把訂單明細轉成 Label&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── ReceivePanelHandler.cs   # static event，把結果送回 Form1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Strategies/              # 4 種折扣策略（AStrategy 子類別）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── DiscountOrders/          # 早期版本：每種折扣一個類別&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── Models/                  # MenuModel、MenuData、OrderRequest、Item&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── AI/                      # Gemini 請求/回應模型、Tool 宣告與執行&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;table&gt;
@@ -1190,7 +1173,7 @@
 &lt;h2 id=&#34;api-key-放在-windows-認證管理員&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#api-key-放在-windows-認證管理員&#34;&gt;#&lt;/a&gt; API Key 放在 Windows 認證管理員&lt;/h2&gt;
 &lt;p&gt;金鑰沒有寫進程式碼或  &lt;code&gt;App.config&lt;/code&gt; （註解裡還留著原本讀  &lt;code&gt;AppSettings&lt;/code&gt;  的寫法），而是從 Windows Credential Manager 讀取：&lt;/p&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//private static readonly string _apiKey = ConfigurationManager.AppSettings[&amp;quot;apiKey&amp;quot;];&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;readonly&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; _apiKey = CredentialManager.ReadCredential(applicationName: &lt;span class=&#34;string&#34;&gt;&amp;quot;GeminiAppKey&amp;quot;&lt;/span&gt;).Password;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;這樣 repo 公開到 GitHub 也不會外洩金鑰；代價是執行前要先在認證管理員新增一筆名為  &lt;code&gt;GeminiAppKey&lt;/code&gt;  的認證。&lt;/p&gt;
+&lt;p&gt;這樣程式碼分享出去也不會外洩金鑰；代價是執行前要先在認證管理員新增一筆名為  &lt;code&gt;GeminiAppKey&lt;/code&gt;  的認證。&lt;/p&gt;
 &lt;h2 id=&#34;winforms動態產生控制項並用-tag-互相關聯&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#winforms動態產生控制項並用-tag-互相關聯&#34;&gt;#&lt;/a&gt; WinForms：動態產生控制項並用 Tag 互相關聯&lt;/h2&gt;
 &lt;p&gt;菜單品項不是在設計工具裡拉的，而是  &lt;code&gt;Extension.GetMenu&lt;/code&gt;  依 JSON 動態產生。勾選框和數量欄位透過  &lt;code&gt;Tag&lt;/code&gt;  互相指向，事件處理時就能從一個控制項找到另一個：&lt;/p&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;CheckBox checkBox = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; CheckBox&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Text = item1.Name + &lt;span class=&#34;string&#34;&gt;&amp;#x27;$&amp;#x27;&lt;/span&gt; + item1.Price,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Padding = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Padding(&lt;span class=&#34;number&#34;&gt;5&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Size = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Size(&lt;span class=&#34;number&#34;&gt;100&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;20&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Location = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Point(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, yi),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;yi += &lt;span class=&#34;number&#34;&gt;30&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NumericUpDown numericUpDown = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; NumericUpDown&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Size = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; Size(&lt;span class=&#34;number&#34;&gt;40&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Tag = checkBox&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;checkBox.Tag = numericUpDown;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;checkBox.CheckedChanged += CheckChanged;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;numericUpDown.ValueChanged += NumberChanged;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -1200,14 +1183,14 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt; &lt;code&gt;AI/AIAgent.cs&lt;/code&gt;  的  &lt;code&gt;requestModel&lt;/code&gt;  是 static&lt;/strong&gt;： &lt;code&gt;protected static AIRequestModel requestModel = new AIRequestModel();&lt;/code&gt; ，而  &lt;code&gt;DiscountContext&lt;/code&gt;  每次都  &lt;code&gt;new AIAgent()&lt;/code&gt;  再  &lt;code&gt;AddPrompt&lt;/code&gt;  兩次。因為欄位是 static， &lt;code&gt;contents&lt;/code&gt;  不會隨新的  &lt;code&gt;AIAgent&lt;/code&gt;  重置，AI 模式下每次改數量都會把整份菜單 JSON 和新的點餐內容再疊上去，請求越來越大，前幾次的點餐內容也可能干擾模型判斷。修正方向：改成 instance 欄位，或在每次請求前清空  &lt;code&gt;contents&lt;/code&gt; 。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt; &lt;code&gt;AIAgent.ExecRequest&lt;/code&gt;  每次請求都  &lt;code&gt;new HttpClient()&lt;/code&gt; &lt;/strong&gt;： &lt;code&gt;await (new HttpClient()).SendAsync(request)&lt;/code&gt;  既沒有重用也沒有 Dispose。AI 模式下每改一次數量就會發一次請求，頻繁建立  &lt;code&gt;HttpClient&lt;/code&gt;  容易耗盡 socket。檔案裡其實已經有註解掉的  &lt;code&gt;private static readonly HttpClient _httpClient&lt;/code&gt; ，改回共用同一個實例即可。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt; &lt;code&gt;DiscountOrderFactory&lt;/code&gt;  只是空殼&lt;/strong&gt;： &lt;code&gt;CreateDiscountOrder&lt;/code&gt;  裡的 switch 全部被註解，永遠回傳  &lt;code&gt;null&lt;/code&gt; ，而且所有呼叫它的地方（ &lt;code&gt;Discount.cs&lt;/code&gt; 、 &lt;code&gt;Order.cs&lt;/code&gt; ）也都是註解。它和  &lt;code&gt;DiscountOrders/&lt;/code&gt;  底下覆寫  &lt;code&gt;CalDisount&lt;/code&gt;  的類別都是改成 Strategy 之前的遺留程式，留著會讓人誤以為還有另一條折扣流程。修正方向：刪除，或搬到另一個分支保存。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;手動選折扣時理由欄位會顯示  &lt;code&gt;abc&lt;/code&gt; &lt;/strong&gt;： &lt;code&gt;DiscountContext.HandleDiscount&lt;/code&gt;  非 AI 分支回傳  &lt;code&gt;(&amp;quot;abc&amp;quot;, &amp;quot;&amp;quot;)&lt;/code&gt; ，這個值經過  &lt;code&gt;ShowPanel&lt;/code&gt;  放進  &lt;code&gt;FullSidePanel.reason&lt;/code&gt; ，最後在  &lt;code&gt;Form1.GetOrder&lt;/code&gt;  被寫進  &lt;code&gt;textBox1.Text&lt;/code&gt; 。看起來是開發時的佔位字串，應改成空字串或折扣名稱。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;DiscountOrderFactory&lt;/code&gt;  只是空殼&lt;/strong&gt;： &lt;code&gt;CreateDiscountOrder&lt;/code&gt;  裡的 switch 全部被註解，永遠回傳  &lt;code&gt;null&lt;/code&gt; ，而且所有呼叫它的地方（ &lt;code&gt;Discount.cs&lt;/code&gt; 、 &lt;code&gt;Order.cs&lt;/code&gt; ）也都是註解。它和  &lt;code&gt;DiscountOrders/&lt;/code&gt;  底下覆寫  &lt;code&gt;CalDisount&lt;/code&gt;  的類別都是改成 Strategy 之前的遺留程式，留著會讓人誤以為還有另一條折扣流程。修正方向：直接刪除。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;手動選折扣時理由欄位會顯示  &lt;code&gt;abc&lt;/code&gt; &lt;/strong&gt;： &lt;code&gt;DiscountContext.HandleDiscount&lt;/code&gt;  非 AI 分支回傳  &lt;code&gt;(&amp;quot;abc&amp;quot;, &amp;quot;&amp;quot;)&lt;/code&gt; ，這個值經過  &lt;code&gt;ShowPanel&lt;/code&gt;  放進  &lt;code&gt;FullSidePanel.reason&lt;/code&gt; ，最後在  &lt;code&gt;Form1.GetOrder&lt;/code&gt;  被寫進  &lt;code&gt;textBox1.Text&lt;/code&gt; 。這是開發時留下的佔位字串，應改成空字串或折扣名稱。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;小結&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小結&#34;&gt;#&lt;/a&gt; 小結&lt;/h1&gt;
 &lt;p&gt;這個專案讓我第一次體會到 Strategy 模式的價值：把「規則的資料」和「計算方式」拆開後，22 種活動只需要 4 個類別。Function Calling 的部分則把反射用到了極致，宣告靠掃描 Assembly 自動註冊、執行靠類別名稱動態建立。回頭看，AI 串接那層的狀態管理（static 欄位、HttpClient）是最需要補強的地方。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
-&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個 GitHub 專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;系列目錄：&lt;a href=&#34;/20261018/csharp/csharp-course-review/&#34; title=&#34;C# 課程實作總整理：8 個練習專案的知識地圖&#34;&gt;C# 課程實作總整理&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;下一篇：&lt;a href=&#34;/20261018/csharp/data-structure/linkedlist/&#34; title=&#34;【C# 實作 02】LinkedList：自製串列、二元搜尋樹、Dictionary 與迭代器&#34;&gt;【C# 實作 02】LinkedList&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
@@ -1406,8 +1389,8 @@
 &lt;/ul&gt;
 &lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption&gt;&lt;span&gt;sql&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;SELECT&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;COUNT&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;DISTINCT&lt;/span&gt;(user_id)) &lt;span class=&#34;keyword&#34;&gt;AS&lt;/span&gt; &amp;quot;預約會員人數&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;FROM&lt;/span&gt; &amp;quot;COURSE_BOOKING&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;WHERE&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  created_at &lt;span class=&#34;keyword&#34;&gt;BETWEEN&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;2024-11-01 00:00:00&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;AND&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;2024-11-30 23:59:59&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;AND&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  status &lt;span class=&#34;operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;課程已取消&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-12-01T13:10:26.000Z</updated>
     </entry>
@@ -1500,8 +1483,8 @@
 &lt;/ul&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-11-01T12:50:26.000Z</updated>
     </entry>
@@ -1599,8 +1582,8 @@
 &lt;/details&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
-        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
+        <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="作業" scheme="https://xiaoxiatian2.github.io/tags/%E4%BD%9C%E6%A5%AD/" />
         <updated>2024-10-26T07:50:26.000Z</updated>
     </entry>
@@ -1645,9 +1628,9 @@
 &lt;/blockquote&gt;
 </content>
         <category term="六角學院" scheme="https://xiaoxiatian2.github.io/categories/hexschool/" />
+        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="個人" scheme="https://xiaoxiatian2.github.io/tags/%E5%80%8B%E4%BA%BA/" />
         <category term="經驗" scheme="https://xiaoxiatian2.github.io/tags/%E7%B6%93%E9%A9%97/" />
-        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <updated>2024-05-23T13:01:51.000Z</updated>
     </entry>
     <entry>
@@ -1671,8 +1654,8 @@
 &lt;img data-src=&#34;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRieHg91inpStbODEoeJB6ZNd3__nYy6bOPig&amp;amp;s&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </content>
         <category term="網站功能" scheme="https://xiaoxiatian2.github.io/categories/%E7%B6%B2%E7%AB%99%E5%8A%9F%E8%83%BD/" />
-        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="文章" scheme="https://xiaoxiatian2.github.io/tags/%E6%96%87%E7%AB%A0/" />
+        <category term="hexschool" scheme="https://xiaoxiatian2.github.io/tags/hexschool/" />
         <category term="狗狗" scheme="https://xiaoxiatian2.github.io/tags/%E7%8B%97%E7%8B%97/" />
         <category term="相片" scheme="https://xiaoxiatian2.github.io/tags/%E7%9B%B8%E7%89%87/" />
         <updated>2024-05-22T03:53:31.001Z</updated>

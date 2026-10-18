@@ -539,9 +539,9 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="語言基礎" scheme="https://xiaoxiatian2.github.io/categories/csharp/basics/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
-            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
             <category term="Expression Tree" scheme="https://xiaoxiatian2.github.io/tags/Expression-Tree/" />
+            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <pubDate>Sun, 18 Oct 2026 21:10:00 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在記帳本專案用過 AutoMapper 套件之後，我很好奇  &lt;code&gt;ForMember(x =&amp;gt; ..., y =&amp;gt; ...)&lt;/code&gt;  這種寫法背後是怎麼運作的，於是自己動手寫了一個簡化版。這篇整理裡面用到的反射、Expression Tree 與泛型。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
@@ -623,8 +623,8 @@
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/categories/csharp/projects/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
             <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
-            <category term="LINQ" scheme="https://xiaoxiatian2.github.io/tags/LINQ/" />
             <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
+            <category term="LINQ" scheme="https://xiaoxiatian2.github.io/tags/LINQ/" />
             <category term="WinForms" scheme="https://xiaoxiatian2.github.io/tags/WinForms/" />
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/tags/%E5%B0%88%E6%A1%88%E5%AF%A6%E4%BD%9C/" />
             <pubDate>Sun, 18 Oct 2026 21:00:00 +0800</pubDate>

@@ -139,19 +139,18 @@ AConverter converter = (AConverter)Activator.CreateInstance(Type.GetType(convert
 
 專案：ParallelProcessing、OrderSystem、AccountingApp
 
-- `async Task Main`、`Task.Run`、`Task.WhenAll`
-- `lock` 保護共用的寫檔動作，並實測加 lock 與不加 lock 的效能差異
+- `Task.Run`、`Task.WhenAll`，以及改用 `Parallel.For` 搭配 `MaxDegreeOfParallelism` 限制同時處理的批次數
+- `lock` 保護共用的寫檔動作，實測加 lock 與不加 lock 的效能差異，並和具名 `Mutex` 比較
 - 迴圈變數的閉包陷阱
 - 用 `Stopwatch` 做 benchmark、比較不同批次大小
 - WinForms 的 async 事件處理、`System.Threading.Timer` 實作 debounce、`form.Invoke` 切回 UI 執行緒
 
 ```csharp csharp
-for (int i = 0; i < batchCount; i++)
+// 批次編號由 Parallel.For 當作參數傳入，不必自己複製迴圈變數
+Parallel.For(0, batchCount, new ParallelOptions() { MaxDegreeOfParallelism = 6 }, batchNumber =>
 {
-    int batchNumber = i; // 先複製一份，避免 lambda 捕捉到同一個 i
-    tasks.Add(Task.Run(() => ProcessBatch(batchNumber)));
-}
-await Task.WhenAll(tasks);
+    ProcessBatch(batchNumber);
+});
 ```
 
 ## 8. UI 開發

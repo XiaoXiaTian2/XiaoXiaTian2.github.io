@@ -333,13 +333,6 @@ private int Partition(T[] items, int left, int right)
 
 `QuickSorter<T>.OrderBy<TKey>` 回傳自己，所以可以寫成 `new QuickSorter<T>().OrderBy(expression).Sort(enumerable)` 的鏈式呼叫。交換兩個元素用的是 Tuple 解構，不需要暫存變數。
 
-# 待改進
-
-1. **`BinaryExpressioner` 只支援 int 與 bool**：`Expressions/BinaryExpressioner.cs` 的 `ApplyBinaryExpression` 把運算元一律強轉成 `(int)` 或 `(bool)`。`object` 拆箱必須是完全相同的型別，所以 `x.Remain + 1f` 這種 `float` 運算，或 `x.Name == "abc"` 這種字串比較，都會在拆箱時丟出 `InvalidCastException`；`Subtract`、`GreaterThan` 等其他運算子則直接丟 `NotSupportedException`。修正方向：像 `UnaryExpressioner` 處理 `Increment` 那樣改用 `dynamic` 運算，或乾脆把 `ForMember` 的來源 Lambda 編譯成委派直接執行。
-2. **來源沒有同名屬性時會 NullReferenceException**：`Converters/ClassConverter.cs` 對目標的每個屬性呼叫 `source.GetType().GetProperty(property.Name)`，找不到時回傳 null，下一行的 `sourceProp.GetValue(source)` 就會 NullReferenceException。也就是目標類別只要多一個來源沒有的屬性，整個轉換就失敗，連 `ForMember` 都來不及補。應該在 `sourceProp == null` 時跳過（`continue`），讓 `ForMember` 處理。
-3. **`QuickSorter.Sort` 在 0 或 1 筆資料時回傳 null**：`Sorters/QuickSorter.cs` 的 `QuickSort` 在 `left >= right` 時回傳 `null`，而 `Sort` 直接回傳最外層呼叫的結果。集合只有 0 或 1 個元素時，最外層就符合這個條件，`OrderBy2` 會回傳 null 而不是陣列，呼叫端存取時就會 NullReferenceException。修正方向：`QuickSort` 改成 `void`，`Sort` 一律回傳排序後的陣列。
-4. **`MemberExpressioner` 忽略了成員所屬的物件**：`Expressions/MemberExpressioner.cs` 直接 `((PropertyInfo)member.Member).GetValue(source)`，沒有先對 `member.Expression` 求值。只有 `x.Id` 這種「直接取參數屬性」的情況是對的；`x.Name.Length` 會拿 `string.Length` 去讀 `UserDTO` 物件而丟出例外，Lambda 若引用外部區域變數（編譯器產生的 closure 欄位是 `FieldInfo` 而非 `PropertyInfo`）則會在強轉時失敗。修正方向：先 `MapExpression(member.Expression, source)` 取得實際物件，再依 `PropertyInfo` / `FieldInfo` 分別讀值。
-
 # 小結
 
 這個專案讓我把「反射」和「Expression Tree」從聽過變成真的會用：用命名慣例加 `Activator.CreateInstance` 做分派、用遞迴處理巢狀型別、用 `Expression<Func<>>` 讀出 Lambda 的結構再自己求值。它離真正的 AutoMapper 還很遠（沒有快取、每次轉換都在做反射），但先自己造過一次輪子，回頭看套件的 API 設計就清楚多了。

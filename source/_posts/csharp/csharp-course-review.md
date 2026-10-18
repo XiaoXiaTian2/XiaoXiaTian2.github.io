@@ -13,7 +13,7 @@ tags:
   - 資料結構
 ---
 
-這一年在 C# 課程中陸續完成了 8 個練習專案，這篇把它們一次整理起來，從程式碼回頭盤點學到了哪些知識點、還缺哪些，順便記錄重讀程式時發現的問題。
+這一年在 C# 課程中陸續完成了 8 個練習專案，這篇把它們一次整理起來，從程式碼回頭盤點學到了哪些知識點、還缺哪些。
 
 <!-- more -->
 
@@ -34,7 +34,7 @@ tags:
 
 # 系列文目錄
 
-每個專案都有一篇獨立的文章，介紹架構、核心知識點與待改進的地方：
+每個專案都有一篇獨立的文章，介紹架構與核心知識點：
 
 1. {% post_link csharp/projects/order-system '【C# 實作 01】OrderSystem：Strategy 折扣引擎與 Gemini Function Calling' %}
 2. {% post_link csharp/data-structure/linkedlist '【C# 實作 02】LinkedList：自製串列、二元搜尋樹、Dictionary 與迭代器' %}
@@ -171,18 +171,6 @@ await Task.WhenAll(tasks);
 
 `[Flags]` 列舉與位元運算、索引子、Tuple 回傳值 `(string, string)`、Pattern Matching（`is int number`）、數字分隔符號 `15_000_000`、字串插值、`?.`、巢狀介面、static class
 
-# 回顧：待修正的地方
-
-重讀程式碼時發現幾個問題，記下來之後修：
-
-| 專案 / 檔案 | 問題 |
-| --- | --- |
-| `LinkedList/JackList.cs` 的 `DetectCycle` | `slow`、`fast` 一開始都指向 Head，第一圈就判定有環，串列非空時 AddRange 一定會被還原 |
-| `LinkedList/Dict/JackDictionary.cs` 的 `GetValue` | 只比對 hashCode 沒比對 `key.Equals`，碰撞時會回傳錯誤的值 |
-| `LinkedList/BinaryTree/BFSIterator.cs` | 讀取 `Current` 時改寫了 `Tree.Root`，走訪一次樹就被破壞 |
-| `StudentManagement/Presenters/StudentPresenter.cs` | 沒有指定 `Id`，刪除時永遠刪到第一筆；建立 Student 時 Height 傳了兩次 |
-| `OrderSystem/AI/AIAgent.cs` | `requestModel` 是 static，每次請求都會累積前幾次的 prompt |
-
 # 下一步
 
 和業界主流的 C# 課程比較，目前還沒涵蓋：
@@ -190,4 +178,4 @@ await Task.WhenAll(tasks);
 - **現代 .NET**：升級到 .NET 8/10，練習 `record`、Nullable Reference Types
 - **資料庫**：SQL 與 EF Core，取代目前的 CSV 儲存
 - **Web 後端**：ASP.NET Core Web API 與 DI 容器
-- **單元測試**：替自製資料結構補上測試，順便驗證上面那些 bug 的修正
+- **單元測試**：替自製資料結構補上測試

@@ -215,15 +215,9 @@ private void unsubscribe_Click(object sender, EventArgs e)
 
 所有按鈕共用同一個 `unsubscribe_Click`，靠 `sender` 和 `Tag` 區分是哪一列，不需要為每個訂閱者各寫一個 lambda。
 
-# 待改進
-
-1. **Rx.dll 以 HintPath 引用另一個專案的編譯產物**：`YoutuberSubcribe.csproj` 裡是 `<HintPath>..\EventHandlerPractice\Rx\bin\Debug\Rx.dll</HintPath>`，直接指向另一個資料夾 `bin\Debug` 底下的 dll。Rx 沒有先編譯、資料夾被搬動或改名，就會找不到 `Rx` 命名空間而無法編譯；Rx 改了程式也不會自動重新建置。修正方向：把兩個專案放進同一個方案，改用 ProjectReference。
-2. **取消訂閱後沒有從 `channelUserMap` 移除**：`UserForm.unsubscribe_Click` 只取消了 Subscription、移除畫面上那一列，對應頻道的 `List<User>` 裡仍然留著這個人。下一次在同頻道訂閱或切換回這個頻道時，`renderChannelList` 會把已取消的人重新畫出來，看起來像是還在訂閱。修正方向：取消時一併從清單移除。
-3. **重新開啟訂閱者視窗後，舊的訂閱者無法取消**：`NotifyForm.button2_Click` 每次都 `new UserForm`，而 `channelUserMap` 是 `UserForm` 的欄位，關掉視窗再開就是一份空的清單。但之前建立的 Subscription 仍然掛在 `Channel.Subject` 上，那些訂閱者會繼續收到影片、繼續在消息大廳發訊息，卻再也沒有按鈕可以取消。修正方向：把訂閱者清單移到 `Youtuber` 或 `Channel` 這類和視窗生命週期無關的物件上。
-
 # 小結
 
-這個專案讓自製的 Rx 第一次有了「真正的使用者」：頻道訂閱用 Subject 表達業務關係，static 的 MessageHandler 則把多個視窗之間的通知解耦。也是在實際使用時才發現，訂閱的「狀態」放在哪裡很重要，跟著視窗走的資料，會在視窗關掉時和背後仍然存活的訂閱脫鉤。
+這個專案讓自製的 Rx 第一次有了「真正的使用者」：頻道訂閱用 Subject 表達業務關係，static 的 MessageHandler 則把多個視窗之間的通知解耦。
 
 ---
 

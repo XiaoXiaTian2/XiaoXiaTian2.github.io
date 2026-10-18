@@ -71,8 +71,16 @@ index_generator:
 default_category: uncategorized
 category_map:
   六角學院: hexschool
+  C#: csharp
+  語言基礎: basics
+  資料結構: data-structure
+  設計模式: design-pattern
+  桌面應用: desktop
+  專案實作: projects
 
 tag_map:
+  C#: csharp
+  .NET: dotnet
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta

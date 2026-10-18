@@ -214,13 +214,13 @@
 &lt;h2 id=&#34;7-非同步與平行處理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7-非同步與平行處理&#34;&gt;#&lt;/a&gt; 7. 非同步與平行處理&lt;/h2&gt;
 &lt;p&gt;專案：ParallelProcessing、OrderSystem、AccountingApp&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;async Task Main&lt;/code&gt; 、 &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;lock&lt;/code&gt;  保護共用的寫檔動作，並實測加 lock 與不加 lock 的效能差異&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt; ，以及改用  &lt;code&gt;Parallel.For&lt;/code&gt;  搭配  &lt;code&gt;MaxDegreeOfParallelism&lt;/code&gt;  限制同時處理的批次數&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lock&lt;/code&gt;  保護共用的寫檔動作，實測加 lock 與不加 lock 的效能差異，並和具名  &lt;code&gt;Mutex&lt;/code&gt;  比較&lt;/li&gt;
 &lt;li&gt;迴圈變數的閉包陷阱&lt;/li&gt;
 &lt;li&gt;用  &lt;code&gt;Stopwatch&lt;/code&gt;  做 benchmark、比較不同批次大小&lt;/li&gt;
 &lt;li&gt;WinForms 的 async 事件處理、 &lt;code&gt;System.Threading.Timer&lt;/code&gt;  實作 debounce、 &lt;code&gt;form.Invoke&lt;/code&gt;  切回 UI 執行緒&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; batchCount; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchNumber = i; &lt;span class=&#34;comment&#34;&gt;// 先複製一份，避免 lambda 捕捉到同一個 i&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    tasks.Add(Task.Run(() =&amp;gt; ProcessBatch(batchNumber)));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;await&lt;/span&gt; Task.WhenAll(tasks);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 批次編號由 Parallel.For 當作參數傳入，不必自己複製迴圈變數&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Parallel.For(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, batchCount, &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; ParallelOptions() &amp;#123; MaxDegreeOfParallelism = &lt;span class=&#34;number&#34;&gt;6&lt;/span&gt; &amp;#125;, batchNumber =&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ProcessBatch(batchNumber);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;8-ui-開發&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8-ui-開發&#34;&gt;#&lt;/a&gt; 8. UI 開發&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;WinForms&lt;/strong&gt;：動態產生控制項、FlowLayoutPanel、DataGridView 自訂欄位（ComboBox、Image）、 &lt;code&gt;DataVisualization.Charting&lt;/code&gt;  圖表、用  &lt;code&gt;Tag&lt;/code&gt;  關聯控制項&lt;/li&gt;
@@ -256,12 +256,13 @@
             <category term="非同步" scheme="https://xiaoxiatian2.github.io/tags/%E9%9D%9E%E5%90%8C%E6%AD%A5/" />
             <category term="LINQ" scheme="https://xiaoxiatian2.github.io/tags/LINQ/" />
             <pubDate>Sun, 18 Oct 2026 21:20:00 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;系列的最後一篇是一個效能實驗：把最多 1,500 萬筆的 CSV 分批讀出再寫回，比較循序處理、平行處理、加不加 lock，以及不同批次大小的差異。程式不長，重點在實驗設計與數據。&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;系列的最後一篇是一個效能實驗：把千萬筆以上的 CSV 分批讀出再寫回，比較循序處理、 &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Parallel.For&lt;/code&gt; 、加不加 lock，以及不同批次大小的差異。程式不長，重點在實驗設計與數據。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;h1 id=&#34;專案簡介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#專案簡介&#34;&gt;#&lt;/a&gt; 專案簡介&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;平台：&lt;strong&gt;.NET Framework 4.8&lt;/strong&gt;、Console&lt;/li&gt;
-&lt;li&gt;參考：自己寫的  &lt;code&gt;CSV&lt;/code&gt;  類別庫（ &lt;code&gt;..\CSV\bin\Debug\CSV.dll&lt;/code&gt; ），提供  &lt;code&gt;CSVHelper.Read&amp;lt;T&amp;gt;&lt;/code&gt;  與  &lt;code&gt;CSVHelper.WriteList&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;參考：自己寫的  &lt;code&gt;CSV&lt;/code&gt;  類別庫（同一個方案內的專案參考），提供  &lt;code&gt;CSVHelper.Read&amp;lt;T&amp;gt;&lt;/code&gt;  與  &lt;code&gt;CSVHelper.WriteList&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;設定：輸入、輸出資料夾由  &lt;code&gt;App.config&lt;/code&gt;  的  &lt;code&gt;InputFolder&lt;/code&gt; 、 &lt;code&gt;OutputFolder&lt;/code&gt;  設定，預設是執行檔旁的  &lt;code&gt;data&lt;/code&gt; 、 &lt;code&gt;outputData&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;資料： &lt;code&gt;MOCK_DATA_&amp;#123;筆數&amp;#125;.csv&lt;/code&gt; ，欄位為  &lt;code&gt;id&lt;/code&gt; 、 &lt;code&gt;first_name&lt;/code&gt; 、 &lt;code&gt;last_name&lt;/code&gt; 、 &lt;code&gt;email&lt;/code&gt; 、 &lt;code&gt;gender&lt;/code&gt; 、 &lt;code&gt;ip_address&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;實驗環境：i7-8550U（4 核 8 執行緒）、32 GB RAM&lt;/li&gt;
 &lt;/ul&gt;
@@ -286,46 +287,83 @@
 &lt;td&gt;&lt;code&gt;ListExtensions.cs&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;Medium&amp;lt;T&amp;gt;&lt;/code&gt;  擴充方法：計算中位數&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;App.config&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;輸入、輸出資料夾設定&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;程式流程：&lt;/p&gt;
-&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;計算批次數 → 清空輸出資料夾 → 每批一個 Task.Run&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  每批：讀取第 N 段資料（計時）→ lock 後寫入輸出檔（計時）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;→ Task.WhenAll 等全部完成 → 輸出讀取、寫入時間的中位數與總時間&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;一開始先寫了循序讀寫的版本當作對照組，之後才改成現在的分批平行版本，以下的程式碼都是平行版本。&lt;/p&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption&gt;&lt;span&gt;text&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;計算批次數 → 清空輸出資料夾 → Parallel.For 分批處理（同時最多 6 批）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  每批：讀取第 N 段資料（計時）→ lock 後寫入輸出檔（計時）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;→ 全部批次完成 → 輸出讀取、寫入時間的中位數與總時間&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;一開始先寫了循序讀寫的版本當作對照組，接著用  &lt;code&gt;Task.Run&lt;/code&gt;  +  &lt;code&gt;Task.WhenAll&lt;/code&gt;  做第一版平行處理，最後改成現在的  &lt;code&gt;Parallel.For&lt;/code&gt; 。以下的程式碼以  &lt;code&gt;Parallel.For&lt;/code&gt;  版本為主。&lt;/p&gt;
 &lt;h1 id=&#34;核心知識點&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#核心知識點&#34;&gt;#&lt;/a&gt; 核心知識點&lt;/h1&gt;
-&lt;h2 id=&#34;1-分批-taskrun-taskwhenall&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-分批-taskrun-taskwhenall&#34;&gt;#&lt;/a&gt; 1. 分批 + Task.Run + Task.WhenAll&lt;/h2&gt;
-&lt;p&gt;一次把千萬筆讀進記憶體再處理，記憶體與時間都很可觀，所以先依  &lt;code&gt;batchSize&lt;/code&gt;  切成多批，每批交給一個 Task 在執行緒集區上跑， &lt;code&gt;Main&lt;/code&gt;  本身是  &lt;code&gt;async Task&lt;/code&gt; ，最後  &lt;code&gt;await Task.WhenAll&lt;/code&gt;  等所有批次完成：&lt;/p&gt;
-&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;async&lt;/span&gt; Task &lt;span class=&#34;title&#34;&gt;Main&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt;[] args&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;object&lt;/span&gt; a = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;object&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; count = &lt;span class=&#34;number&#34;&gt;15&lt;/span&gt;_000_000;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchSize = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;_000_000;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; inputPath = &lt;span class=&#34;string&#34;&gt;$&amp;quot;E:/csharp_course/data/MOCK_DATA_&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;.csv&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; outputDir = &lt;span class=&#34;string&#34;&gt;&amp;quot;E:/csharp_course/outputData&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 計算分批&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchCount = (&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;)Math.Ceiling((&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt;)count / batchSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    List&amp;lt;Task&amp;gt; tasks = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; List&amp;lt;Task&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; batchCount; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchNumber = i;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 每批處理&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        Task task = Task.Run(() =&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        tasks.Add(task);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;await&lt;/span&gt; Task.WhenAll(tasks); &lt;span class=&#34;comment&#34;&gt;// 等全部的批次都做完&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    totalStopwatch.Stop();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;Math.Ceiling((double)count / batchSize)&lt;/code&gt;  先轉成  &lt;code&gt;double&lt;/code&gt;  再無條件進位，筆數不能整除時最後一批才不會漏掉。數字分隔符號  &lt;code&gt;15_000_000&lt;/code&gt;  則讓大數字一眼就能看出位數。&lt;/p&gt;
-&lt;h2 id=&#34;2-迴圈變數的閉包陷阱&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-迴圈變數的閉包陷阱&#34;&gt;#&lt;/a&gt; 2. 迴圈變數的閉包陷阱&lt;/h2&gt;
-&lt;p&gt;上面那行  &lt;code&gt;int batchNumber = i;&lt;/code&gt;  看似多餘，其實是關鍵。Lambda 捕捉的是&lt;strong&gt;變數&lt;/strong&gt;而不是當下的值； &lt;code&gt;for&lt;/code&gt;  迴圈的  &lt;code&gt;i&lt;/code&gt;  在整個迴圈中只有一個，等 Task 真正開始執行時，迴圈可能已經跑完， &lt;code&gt;i&lt;/code&gt;  已經變成  &lt;code&gt;batchCount&lt;/code&gt; ，所有批次都會讀到同一段（甚至超出範圍）。在迴圈內宣告區域變數，每一圈都是新的變數，各個 Lambda 才會各自捕捉到正確的批次編號：&lt;/p&gt;
-&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchNumber = i;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 每批處理&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Task task = Task.Run(() =&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Stopwatch stopwatch = Stopwatch.StartNew();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    List&amp;lt;DataModel&amp;gt; batch = CSVHelper.Read&amp;lt;DataModel&amp;gt;(inputPath, batchNumber * batchSize, batchSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    readTimes[batchNumber] = stopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;計時結果寫進  &lt;code&gt;readTimes[batchNumber]&lt;/code&gt; ：每個 Task 只寫自己那一格，不同 Task 不會寫到同一個位置，所以這裡不需要 lock。&lt;/p&gt;
+&lt;h2 id=&#34;1-分批-parallelfor&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-分批-parallelfor&#34;&gt;#&lt;/a&gt; 1. 分批 + Parallel.For&lt;/h2&gt;
+&lt;p&gt;一次把千萬筆讀進記憶體再處理，記憶體與時間都很可觀，所以先依  &lt;code&gt;batchSize&lt;/code&gt;  切成多批，再用  &lt;code&gt;Parallel.For&lt;/code&gt;  讓多個批次同時處理，並以  &lt;code&gt;MaxDegreeOfParallelism&lt;/code&gt;  限制同時最多 6 批：&lt;/p&gt;
+&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Main&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt;[] args&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;object&lt;/span&gt; a = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;object&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; count = &lt;span class=&#34;number&#34;&gt;15&lt;/span&gt;_000_000;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchSize = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;_000_000;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; inputDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[&lt;span class=&#34;string&#34;&gt;&amp;quot;InputFolder&amp;quot;&lt;/span&gt;] ?? &lt;span class=&#34;string&#34;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; inputPath = &lt;span class=&#34;string&#34;&gt;$&amp;quot;&lt;span class=&#34;subst&#34;&gt;&amp;#123;inputDir&amp;#125;&lt;/span&gt;/MOCK_DATA_&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;.csv&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; outputDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[&lt;span class=&#34;string&#34;&gt;&amp;quot;OutputFolder&amp;quot;&lt;/span&gt;] ?? &lt;span class=&#34;string&#34;&gt;&amp;quot;outputData&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 計算分批&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchCount = (&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;)Math.Ceiling((&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt;)count / batchSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Stopwatch totalStopwatch = Stopwatch.StartNew();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 每批處理，同時最多 6 批&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Parallel.For(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, batchCount, &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; ParallelOptions() &amp;#123; MaxDegreeOfParallelism = &lt;span class=&#34;number&#34;&gt;6&lt;/span&gt; &amp;#125;, batchNumber =&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;); &lt;span class=&#34;comment&#34;&gt;// Parallel.For 會等全部的批次都做完才往下&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    totalStopwatch.Stop();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;Parallel.For&lt;/code&gt;  會阻塞到所有批次都完成才往下執行，所以  &lt;code&gt;Main&lt;/code&gt;  不需要是  &lt;code&gt;async&lt;/code&gt; ，結束後直接停止計時即可。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Math.Ceiling((double)count / batchSize)&lt;/code&gt;  先轉成  &lt;code&gt;double&lt;/code&gt;  再無條件進位，筆數不能整除時最後一批才不會漏掉。數字分隔符號  &lt;code&gt;15_000_000&lt;/code&gt;  則讓大數字一眼就能看出位數。路徑用  &lt;code&gt;Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ...)&lt;/code&gt;  以執行檔所在資料夾為基準， &lt;code&gt;?? &amp;quot;data&amp;quot;&lt;/code&gt;  則是設定檔沒有這個 key 時的預設值。&lt;/p&gt;
+&lt;h2 id=&#34;2-從-taskrun-改成-parallelfor&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-從-taskrun-改成-parallelfor&#34;&gt;#&lt;/a&gt; 2. 從 Task.Run 改成 Parallel.For&lt;/h2&gt;
+&lt;p&gt;第一版是自己用迴圈建立 Task， &lt;code&gt;Main&lt;/code&gt;  寫成  &lt;code&gt;async Task&lt;/code&gt; ，最後  &lt;code&gt;await Task.WhenAll&lt;/code&gt;  等所有批次完成：&lt;/p&gt;
+&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;List&amp;lt;Task&amp;gt; tasks = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; List&amp;lt;Task&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; batchCount; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; batchNumber = i; &lt;span class=&#34;comment&#34;&gt;// 先複製一份，避免 lambda 捕捉到同一個 i&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// 每批處理&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Task task = Task.Run(() =&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        List&amp;lt;DataModel&amp;gt; batch = CSVHelper.Read&amp;lt;DataModel&amp;gt;(inputPath, batchNumber * batchSize, batchSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    tasks.Add(task);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;await&lt;/span&gt; Task.WhenAll(tasks); &lt;span class=&#34;comment&#34;&gt;// 等全部的批次都做完&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;那行  &lt;code&gt;int batchNumber = i;&lt;/code&gt;  是為了避開&lt;strong&gt;迴圈變數的閉包陷阱&lt;/strong&gt;。Lambda 捕捉的是變數而不是當下的值； &lt;code&gt;for&lt;/code&gt;  迴圈的  &lt;code&gt;i&lt;/code&gt;  在整個迴圈中只有一個，等 Task 真正開始執行時，迴圈可能已經跑完， &lt;code&gt;i&lt;/code&gt;  已經變成  &lt;code&gt;batchCount&lt;/code&gt; ，所有批次都會讀到同一段（甚至超出範圍）。在迴圈內宣告區域變數，每一圈都是新的變數，各個 Lambda 才會各自捕捉到正確的批次編號。&lt;/p&gt;
+&lt;p&gt;改成  &lt;code&gt;Parallel.For&lt;/code&gt;  之後有三個差別：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;Task.Run&lt;/code&gt;  +  &lt;code&gt;Task.WhenAll&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;Parallel.For&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;批次編號&lt;/td&gt;
+&lt;td&gt;要自己複製迴圈變數，避開閉包陷阱&lt;/td&gt;
+&lt;td&gt;由  &lt;code&gt;Parallel.For&lt;/code&gt;  當作 Lambda 參數傳入，沒有閉包陷阱&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;同時處理的批次數&lt;/td&gt;
+&lt;td&gt;所有批次一次丟進執行緒集區，同時跑幾批由集區決定&lt;/td&gt;
+&lt;td&gt;用  &lt;code&gt;MaxDegreeOfParallelism&lt;/code&gt;  明確限制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;等待方式&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;await Task.WhenAll&lt;/code&gt; ， &lt;code&gt;Main&lt;/code&gt;  要寫成  &lt;code&gt;async Task&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;呼叫本身就會等全部完成， &lt;code&gt;Main&lt;/code&gt;  維持同步&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;計時結果寫進  &lt;code&gt;readTimes[batchNumber]&lt;/code&gt; ：每個批次只寫自己那一格，不同批次不會寫到同一個位置，所以這裡不需要 lock。&lt;/p&gt;
 &lt;h2 id=&#34;3-lock-保護共用的寫入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-lock-保護共用的寫入&#34;&gt;#&lt;/a&gt; 3. lock 保護共用的寫入&lt;/h2&gt;
-&lt;p&gt;讀取可以各讀各的，但所有批次都寫到同一個輸出檔，同時寫入會互相干擾，所以寫入的部分用  &lt;code&gt;lock&lt;/code&gt;  包起來，一次只讓一個 Task 進去：&lt;/p&gt;
-&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//string outputPath = $&amp;quot;&amp;#123;outputDir&amp;#125;/&amp;#123;count&amp;#125;/MOCK_DATA_&amp;#123;count&amp;#125;_&amp;#123;batchNumber + 1&amp;#125;.csv&amp;quot;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; outputPath = &lt;span class=&#34;string&#34;&gt;$&amp;quot;&lt;span class=&#34;subst&#34;&gt;&amp;#123;outputDir&amp;#125;&lt;/span&gt;/&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;/MOCK_DATA_&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;.csv&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;stopwatch.Restart();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;lock&lt;/span&gt; (a)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CSVHelper.WriteList(outputPath, batch);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;writeTimes[batchNumber] = stopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;被註解掉的那行是「每批寫成獨立檔案」的版本；那種寫法各批的輸出檔互不相干，本來就不需要 lock。後面「無 lock」與「lock」兩組數據，比較的大致就是這兩種情境，可惜當時沒有把無 lock 版的寫檔方式記下來。&lt;/p&gt;
+&lt;p&gt;讀取可以各讀各的，但所有批次都寫到同一個輸出檔，同時寫入會互相干擾，所以寫入的部分用  &lt;code&gt;lock&lt;/code&gt;  包起來，一次只讓一個批次進去：&lt;/p&gt;
+&lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//string outputPath = $&amp;quot;&amp;#123;outputDir&amp;#125;/&amp;#123;count&amp;#125;/MOCK_DATA_&amp;#123;count&amp;#125;_&amp;#123;batchNumber + 1&amp;#125;.csv&amp;quot;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;string&lt;/span&gt; outputPath = &lt;span class=&#34;string&#34;&gt;$&amp;quot;&lt;span class=&#34;subst&#34;&gt;&amp;#123;outputDir&amp;#125;&lt;/span&gt;/&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;/MOCK_DATA_&lt;span class=&#34;subst&#34;&gt;&amp;#123;count&amp;#125;&lt;/span&gt;.csv&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Stopwatch stopwatch = Stopwatch.StartNew();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;List&amp;lt;DataModel&amp;gt; batch = CSVHelper.Read&amp;lt;DataModel&amp;gt;(inputPath, batchNumber * batchSize, batchSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;readTimes[batchNumber] = stopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;stopwatch.Restart();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//Mutex appMutex = new Mutex(false, &amp;quot;MutexPractice&amp;quot;);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//appMutex.WaitOne();&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//appMutex.ReleaseMutex();&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;lock&lt;/span&gt; (a)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CSVHelper.WriteList(outputPath, batch);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;writeTimes[batchNumber] = stopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;被註解掉的第一行是「每批寫成獨立檔案」的版本；那種寫法各批的輸出檔互不相干，本來就不需要 lock。後面「無 lock」與「lock」兩組數據，比較的大致就是這兩種情境，可惜當時沒有把無 lock 版的寫檔方式記下來。&lt;/p&gt;
+&lt;p&gt;中間註解掉的三行是另一種鎖：具名的  &lt;code&gt;Mutex&lt;/code&gt; 。 &lt;code&gt;lock&lt;/code&gt;  只在同一個行程內有效， &lt;code&gt;Mutex&lt;/code&gt;  則是作業系統層級的鎖，取了名字之後可以跨行程共用（例如防止程式被重複開啟），代價是每次取得、釋放都要經過系統呼叫。Task 版本時我也用 Mutex 測過一輪，結果放在後面的數據裡。&lt;/p&gt;
 &lt;h2 id=&#34;4-用-linq-寫中位數擴充方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-用-linq-寫中位數擴充方法&#34;&gt;#&lt;/a&gt; 4. 用 LINQ 寫中位數擴充方法&lt;/h2&gt;
 &lt;p&gt;各批次的讀寫時間會有落差，我用中位數來代表「一批通常要多久」，好處是不會被少數特別慢的批次拉偏。寫成泛型擴充方法，透過  &lt;code&gt;selector&lt;/code&gt;  決定要取哪個欄位：&lt;/p&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Medium&lt;/span&gt;&amp;lt;&lt;span class=&#34;title&#34;&gt;T&lt;/span&gt;&amp;gt;(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt; IEnumerable&amp;lt;T&amp;gt; list, Func&amp;lt;T, &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt;&amp;gt; selector&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; doubleList = list.Select(selector).OrderBy(x =&amp;gt; x).ToList();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; count = doubleList.Count();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; middle = count / &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (count % &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt; == &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; rent = doubleList.ElementAt(middle - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) + doubleList.ElementAt(middle);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; rent / &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; doubleList.ElementAt(middle);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;figure class=&#34;highlight csharp&#34;&gt;&lt;figcaption&gt;&lt;span&gt;csharp&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; readTimeMedium = readTimes.Medium(x =&amp;gt; x);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; writeTimeMedium = writeTimes.Medium(x =&amp;gt; x);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;double&lt;/span&gt; totalTime = totalStopwatch.ElapsedMilliseconds / &lt;span class=&#34;number&#34;&gt;1000.0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Console.WriteLine(&lt;span class=&#34;string&#34;&gt;$&amp;quot;| 筆數 | 總讀取時間 | 總寫入時間 | 總時間 |\n| &lt;span class=&#34;subst&#34;&gt;&amp;#123;count.ToString(&lt;span class=&#34;string&#34;&gt;&amp;quot;N0&amp;quot;&lt;/span&gt;)&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;readTimeMedium&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;writeTimeMedium&amp;#125;&lt;/span&gt; | &lt;span class=&#34;subst&#34;&gt;&amp;#123;totalTime&amp;#125;&lt;/span&gt; |&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;輸出直接是 Markdown 表格的一列，跑完就能貼進筆記。&lt;/p&gt;
 &lt;h2 id=&#34;5-實驗設計與數據&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-實驗設計與數據&#34;&gt;#&lt;/a&gt; 5. 實驗設計與數據&lt;/h2&gt;
-&lt;p&gt;一共做了四組實驗：&lt;/p&gt;
+&lt;p&gt;一共做了這幾組實驗，平行的各組批次大小都是 100 萬筆：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;循序讀寫&lt;/strong&gt;：從 1 萬筆到 1,500 萬筆，記錄讀取、寫入、總時間與記憶體用量&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;平行、無 lock&lt;/strong&gt;（批次 100 萬筆）：100 萬到 1,500 萬筆&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;平行、有 lock&lt;/strong&gt;（批次 100 萬筆）：同樣的筆數區間&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Task.Run 版本&lt;/strong&gt;：無 lock、lock、Mutex 三組，100 萬到 1,500 萬筆&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallel.For 版本&lt;/strong&gt;：無 lock、lock 兩組，100 萬到 1,500 萬筆；lock 組另外一路測到 1 億筆&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;實驗 2：批次大小&lt;/strong&gt;：批次從 100 萬到 700 萬筆，目標筆數 500 萬與 1,000 萬&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;另外還做過一次「以 350 萬為一批次」的零散測試，紀錄不完整，這裡就省略。&lt;/p&gt;
-&lt;p&gt;以下節錄前三組的「總完成時間」（單位：秒）：&lt;/p&gt;
+&lt;p&gt;以下節錄各組的「總完成時間」（單位：秒）：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;筆數&lt;/th&gt;
 &lt;th&gt;循序&lt;/th&gt;
-&lt;th&gt;平行・無 lock&lt;/th&gt;
-&lt;th&gt;平行・lock&lt;/th&gt;
+&lt;th&gt;Task・無 lock&lt;/th&gt;
+&lt;th&gt;Task・lock&lt;/th&gt;
+&lt;th&gt;Task・Mutex&lt;/th&gt;
+&lt;th&gt;Parallel・無 lock&lt;/th&gt;
+&lt;th&gt;Parallel・lock&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -334,30 +372,45 @@
 &lt;td&gt;8.126&lt;/td&gt;
 &lt;td&gt;6.939&lt;/td&gt;
 &lt;td&gt;6.461&lt;/td&gt;
+&lt;td&gt;8.682&lt;/td&gt;
+&lt;td&gt;3.526&lt;/td&gt;
+&lt;td&gt;3.728&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;5,000,000&lt;/td&gt;
 &lt;td&gt;37.732&lt;/td&gt;
 &lt;td&gt;16.328&lt;/td&gt;
 &lt;td&gt;24.996&lt;/td&gt;
+&lt;td&gt;23.482&lt;/td&gt;
+&lt;td&gt;9.991&lt;/td&gt;
+&lt;td&gt;11.092&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;10,000,000&lt;/td&gt;
 &lt;td&gt;138.046&lt;/td&gt;
 &lt;td&gt;34.669&lt;/td&gt;
 &lt;td&gt;49.259&lt;/td&gt;
+&lt;td&gt;49.46&lt;/td&gt;
+&lt;td&gt;20.36&lt;/td&gt;
+&lt;td&gt;22.877&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;14,000,000&lt;/td&gt;
 &lt;td&gt;246.163&lt;/td&gt;
 &lt;td&gt;64.022&lt;/td&gt;
 &lt;td&gt;70.982&lt;/td&gt;
+&lt;td&gt;79.741&lt;/td&gt;
+&lt;td&gt;30.224&lt;/td&gt;
+&lt;td&gt;33.507&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;15,000,000&lt;/td&gt;
 &lt;td&gt;—&lt;/td&gt;
 &lt;td&gt;55.975&lt;/td&gt;
-&lt;td&gt;89.052&lt;/td&gt;
+&lt;td&gt;84.209&lt;/td&gt;
+&lt;td&gt;82.76&lt;/td&gt;
+&lt;td&gt;33.83&lt;/td&gt;
+&lt;td&gt;36.17&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -407,6 +460,55 @@
 &lt;td&gt;—&lt;/td&gt;
 &lt;td&gt;—&lt;/td&gt;
 &lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Parallel.For・lock 組加大筆數後的結果（節錄）：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;筆數&lt;/th&gt;
+&lt;th&gt;讀取中位數 (s)&lt;/th&gt;
+&lt;th&gt;寫入中位數 (s)&lt;/th&gt;
+&lt;th&gt;總完成時間 (s)&lt;/th&gt;
+&lt;th&gt;記憶體用量 (mb)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;15,000,000&lt;/td&gt;
+&lt;td&gt;9.914&lt;/td&gt;
+&lt;td&gt;2.813&lt;/td&gt;
+&lt;td&gt;36.17&lt;/td&gt;
+&lt;td&gt;2,500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;30,000,000&lt;/td&gt;
+&lt;td&gt;14.5245&lt;/td&gt;
+&lt;td&gt;2.191&lt;/td&gt;
+&lt;td&gt;87.984&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;54,000,000&lt;/td&gt;
+&lt;td&gt;17.0515&lt;/td&gt;
+&lt;td&gt;1.9435&lt;/td&gt;
+&lt;td&gt;179.238&lt;/td&gt;
+&lt;td&gt;2,500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80,000,000&lt;/td&gt;
+&lt;td&gt;22.9195&lt;/td&gt;
+&lt;td&gt;1.8535&lt;/td&gt;
+&lt;td&gt;322.524&lt;/td&gt;
+&lt;td&gt;2,500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;100,000,000&lt;/td&gt;
+&lt;td&gt;29.395&lt;/td&gt;
+&lt;td&gt;1.6845&lt;/td&gt;
+&lt;td&gt;537.184&lt;/td&gt;
+&lt;td&gt;2,500&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -467,14 +569,16 @@
 &lt;/table&gt;
 &lt;p&gt;幾點保守的觀察：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;在節錄的筆數中，兩種平行版本的總時間都比循序版本短，而且筆數越多差距越明顯&lt;/li&gt;
-&lt;li&gt;除了 100 萬筆那一列之外，有 lock 的總時間都比無 lock 長；100 萬筆時只有一批，lock 不會有競爭，兩者接近也合理&lt;/li&gt;
-&lt;li&gt;循序版本在 1,500 萬筆那一列沒有數據；記憶體用量隨筆數增加，到 1,400 萬筆時記錄為 3,700 MB&lt;/li&gt;
+&lt;li&gt;在節錄的筆數中，平行版本的總時間幾乎都比循序版本短，而且筆數越多差距越明顯；唯一的例外是 Task・Mutex 的 100 萬筆（8.682 秒，循序 8.126 秒）&lt;/li&gt;
+&lt;li&gt;Parallel.For 的兩組在每一列都比對應的 Task 組快；有 lock 時差距最明顯，1,500 萬筆從 84.209 秒降到 36.17 秒&lt;/li&gt;
+&lt;li&gt;Task 版本加了 lock 之後明顯變慢（1,500 萬筆 55.975 → 84.209 秒），Parallel.For 版本則只差一點（33.83 → 36.17 秒）。Parallel.For 版本 lock 組的寫入中位數都在 4 秒以內，同時最多 6 批，排隊等鎖的時間應該也跟著變短&lt;/li&gt;
+&lt;li&gt;Mutex 和 lock 互有快慢，沒有明顯優勢；同一個行程內的同步用  &lt;code&gt;lock&lt;/code&gt;  就夠了&lt;/li&gt;
+&lt;li&gt;Parallel.For・lock 組從 1,500 萬筆一路測到 1 億筆，有記錄的記憶體用量都在 2,500 MB；循序組到 1,400 萬筆就記錄為 3,700 MB。記憶體沒有隨筆數一直增加，應該是因為限制了同時處理的批次數，同一時間留在記憶體裡的資料量也就有了上限&lt;/li&gt;
 &lt;li&gt;實驗 2 目標 1,000 萬筆時，批次 350 萬筆的兩次測試（77.893 / 79.492）是總時間最短的；批次到 500 萬、700 萬時，讀寫時間跳到 60 以上，總時間也回到 120 以上&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;讀這些數據時有兩點要注意。第一，平行版本輸出的「讀取／寫入」是&lt;strong&gt;每批時間的中位數&lt;/strong&gt;，不是全部批次的加總，所以只有「總完成時間」能和循序版本直接比較，上面的對照表也只放這一欄。第二，實驗 2 的表頭標示為 ms，但程式是用  &lt;code&gt;ElapsedMilliseconds / 1000.0&lt;/code&gt;  換算成秒後輸出，所以這組數值的單位應該是秒，表頭的 ms 是標錯了。&lt;/p&gt;
 &lt;h1 id=&#34;小結&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小結&#34;&gt;#&lt;/a&gt; 小結&lt;/h1&gt;
-&lt;p&gt;這個實驗讓我實際摸到  &lt;code&gt;async Task Main&lt;/code&gt; 、 &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt; 、閉包陷阱和  &lt;code&gt;lock&lt;/code&gt; ，也體會到「量測方式」本身就會影響結論：計時從哪裡開始、取中位數還是加總、單位標示是否正確，都會改變數據的意義。以後做效能比較，我會把每一組的實驗程式、量測定義和資料產生方式一起記下來，讓結果可以被重現。&lt;/p&gt;
+&lt;p&gt;這個實驗讓我實際摸到  &lt;code&gt;Task.Run&lt;/code&gt; 、 &lt;code&gt;Task.WhenAll&lt;/code&gt; 、閉包陷阱、 &lt;code&gt;Parallel.For&lt;/code&gt;  與  &lt;code&gt;MaxDegreeOfParallelism&lt;/code&gt; ，以及  &lt;code&gt;lock&lt;/code&gt;  和  &lt;code&gt;Mutex&lt;/code&gt;  的差別。從 Task 版本改成 Parallel.For，程式變短、少了閉包陷阱，速度和記憶體用量也都更好。也體會到「量測方式」本身就會影響結論：計時從哪裡開始、取中位數還是加總、單位標示是否正確，都會改變數據的意義。以後做效能比較，我會把每一組的實驗程式、量測定義和資料產生方式一起記下來，讓結果可以被重現。&lt;/p&gt;
 &lt;p&gt;這也是 C# 實作系列的最後一篇，感謝看到這裡。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
@@ -490,9 +594,9 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="語言基礎" scheme="https://xiaoxiatian2.github.io/categories/csharp/basics/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
-            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
             <category term="Expression Tree" scheme="https://xiaoxiatian2.github.io/tags/Expression-Tree/" />
+            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <pubDate>Sun, 18 Oct 2026 21:10:00 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在記帳本專案用過 AutoMapper 套件之後，我很好奇  &lt;code&gt;ForMember(x =&amp;gt; ..., y =&amp;gt; ...)&lt;/code&gt;  這種寫法背後是怎麼運作的，於是自己動手寫了一個簡化版。這篇整理裡面用到的反射、Expression Tree 與泛型。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
@@ -565,9 +669,9 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/categories/csharp/projects/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
-            <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
-            <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
             <category term="LINQ" scheme="https://xiaoxiatian2.github.io/tags/LINQ/" />
+            <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
+            <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
             <category term="WinForms" scheme="https://xiaoxiatian2.github.io/tags/WinForms/" />
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/tags/%E5%B0%88%E6%A1%88%E5%AF%A6%E4%BD%9C/" />
             <pubDate>Sun, 18 Oct 2026 21:00:00 +0800</pubDate>
@@ -863,9 +967,9 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="設計模式" scheme="https://xiaoxiatian2.github.io/categories/csharp/design-pattern/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
+            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
             <category term="委派" scheme="https://xiaoxiatian2.github.io/tags/%E5%A7%94%E6%B4%BE/" />
-            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <pubDate>Sun, 18 Oct 2026 20:30:00 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;這篇整理委派、事件與觀察者模式的練習。從最經典的「報社與訂戶」寫起，接著用  &lt;code&gt;Action&amp;lt;T&amp;gt;&lt;/code&gt;  把它簡化，最後仿照 Reactive Extensions（Rx）的介面，自己做一個迷你版的 Subject 與 Subscription。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
@@ -928,9 +1032,9 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="資料結構" scheme="https://xiaoxiatian2.github.io/categories/csharp/data-structure/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
+            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <category term="學習筆記" scheme="https://xiaoxiatian2.github.io/tags/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" />
             <category term="資料結構" scheme="https://xiaoxiatian2.github.io/tags/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" />
-            <category term="泛型" scheme="https://xiaoxiatian2.github.io/tags/%E6%B3%9B%E5%9E%8B/" />
             <pubDate>Sun, 18 Oct 2026 20:20:00 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;這篇回顧課程中「自己造輪子」的資料結構練習：不用  &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; 、 &lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; ，從節點開始自己寫鏈結串列、二元搜尋樹和雜湊表，再替它們實作迭代器，讓  &lt;code&gt;foreach&lt;/code&gt;  可以直接走訪。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
@@ -1022,8 +1126,8 @@
             <category term="C#" scheme="https://xiaoxiatian2.github.io/categories/csharp/" />
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/categories/csharp/projects/" />
             <category term="C#" scheme="https://xiaoxiatian2.github.io/tags/csharp/" />
-            <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
             <category term="反射" scheme="https://xiaoxiatian2.github.io/tags/%E5%8F%8D%E5%B0%84/" />
+            <category term="設計模式" scheme="https://xiaoxiatian2.github.io/tags/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F/" />
             <category term="WinForms" scheme="https://xiaoxiatian2.github.io/tags/WinForms/" />
             <category term="專案實作" scheme="https://xiaoxiatian2.github.io/tags/%E5%B0%88%E6%A1%88%E5%AF%A6%E4%BD%9C/" />
             <pubDate>Sun, 18 Oct 2026 20:10:00 +0800</pubDate>

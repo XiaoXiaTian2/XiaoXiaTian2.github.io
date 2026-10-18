@@ -32,7 +32,7 @@ tags:
 
 # 架構與功能
 
-```
+```text text
 AutoMapper/
 ├── Mapper.cs              進入點 MapDest<TSource, TDest>，分派 Converter 與 Expressioner
 ├── MapperConfig.cs        ForMember 設定，記錄「目標屬性 → 來源運算式」
@@ -50,7 +50,7 @@ AutoMapper/
 
 使用方式（`Program.cs`）：
 
-```csharp
+```csharp csharp
 List<UserDAO> users = Mapper.MapDest<UserDTO, UserDAO>(lists, config =>
 {
     config
@@ -65,7 +65,7 @@ List<UserDAO> users = Mapper.MapDest<UserDTO, UserDAO>(lists, config =>
 
 整個 Mapper 的核心是 `Convert(object source, Type destType)`：先判斷目標型別屬於哪一類，再用類別名稱字串建立對應的 Converter。
 
-```csharp
+```csharp csharp
 private static object Convert(object source, Type destType)
 {
     if (source == null)
@@ -81,7 +81,7 @@ private static object Convert(object source, Type destType)
 
 分類規則寫成 `Type` 的擴充方法。注意判斷順序：`string` 也實作了 `IEnumerable<char>`，所以必須先判斷基本型別，否則字串會被當成集合處理。
 
-```csharp
+```csharp csharp
 if (basicTypes.Contains(type))
 {
     return PropertyType.Basic;
@@ -111,7 +111,7 @@ return PropertyType.Class;
 
 `ClassConverter` 建立目標物件後，逐一取出來源的同名屬性，再把值丟回 `Mapper.Convert` 轉成目標屬性的型別：
 
-```csharp
+```csharp csharp
 public override object Convert(object source, Type destType)
 {
     PropertyInfo[] propertyInfo = destType.GetProperties();
@@ -129,7 +129,7 @@ public override object Convert(object source, Type destType)
 
 集合也是同樣的思路，`EnumerableConverter` 取出泛型參數作為元素型別，每個元素各自遞迴轉換：
 
-```csharp
+```csharp csharp
 public override object Convert(object source, Type destType)
 {
     Type destElementType = destType.GetGenericArguments()[0];
@@ -146,7 +146,7 @@ public override object Convert(object source, Type destType)
 
 `Mapper.Convert` 是 private，Converter 在另一個類別裡要怎麼呼叫？我在抽象基底 `AConverter` 用反射加上 `BindingFlags.NonPublic` 取得它。這樣 Mapper 對外只公開 `MapDest`，內部的遞迴入口不會被外部誤用：
 
-```csharp
+```csharp csharp
 public abstract class AConverter
 {
     public abstract object Convert(object soruce, Type destType);
@@ -163,7 +163,7 @@ public abstract class AConverter
 
 基本型別之間的轉換，我不想寫一大串 `if/switch`，而是利用 `System.Convert` 的命名規則：目標是 `Int32` 就找 `ToInt32`，並且用來源型別當參數型別找出正確的多載：
 
-```csharp
+```csharp csharp
 public override object Convert(object source, Type destType)
 {
     if (destType.IsInstanceOfType(source))
@@ -194,7 +194,7 @@ public override object Convert(object source, Type destType)
 
 `ForMember` 的兩個參數都是 `Expression<Func<...>>` 而不是 `Func<...>`。差別在於 `Func` 只能執行，`Expression` 則是一棵可以被程式讀取的語法樹。目標端 `y => y.schools` 的 Body 是 `MemberExpression`，從中可以拿到 `PropertyInfo`；來源端則先把整棵 Body 存起來，等到轉換時再求值：
 
-```csharp
+```csharp csharp
 public class MapperConfig<TSource, TDest>
 {
     public Dictionary<PropertyInfo, ExpressionModel> memberLists = new Dictionary<PropertyInfo, ExpressionModel>();
@@ -211,7 +211,7 @@ public class MapperConfig<TSource, TDest>
 
 `MapDest` 先依名稱做完整的自動轉換，再套用 `ForMember` 的設定覆蓋指定屬性：
 
-```csharp
+```csharp csharp
 public static TDest MapDest<TSource, TDest>(TSource source, Action<MapperConfig<TSource, TDest>> action = null)
 {
     MapperConfig<TSource, TDest> config = new MapperConfig<TSource, TDest>();
@@ -239,7 +239,7 @@ private static void ApplyMembers<TSource, TDest>(MapperConfig<TSource, TDest> co
 
 `Express` 依節點型別分派到對應的 Expressioner。Unary、Binary 節點的 `NodeType` 有很多種（`Not`、`Convert`、`Add`、`Equal`……），Member、MethodCall 的 `NodeType`（`MemberAccess`、`Call`）又和 Expressioner 的類別名稱對不上，所以這四類用 `is` 判斷類別，其他節點則直接用 `NodeType` 組類別名稱：
 
-```csharp
+```csharp csharp
 private static object Express(Expression expression, object source)
 {
     string expressionName = expression.NodeType.ToString();
@@ -262,7 +262,7 @@ private static object Express(Expression expression, object source)
 
 每個 Expressioner 只處理自己那種節點，子節點再遞迴交回 `Express`。以範例中的 `new List<SchoolDAO>() { new SchoolDAO() { Id = x.Id } }` 為例，會依序經過 ListInit → New → MemberInit → New → Member。`MemberInitExpressioner` 先建立物件，再逐一處理 `{ Id = x.Id }` 這類屬性指定：
 
-```csharp
+```csharp csharp
 private object ApplyMemberInit(MemberInitExpression memberInit, object source)
 {
     object obj = MapExpression(memberInit.NewExpression, source);
@@ -284,7 +284,7 @@ private object ApplyMemberInit(MemberInitExpression memberInit, object source)
 
 `ListInitExpressioner` 則是集合初始化器的原理：先 new 出集合，再對每個初始化項目呼叫 `Add`（`initializer.AddMethod`）：
 
-```csharp
+```csharp csharp
 foreach (ElementInit initializer in listInit.Initializers)
 {
     object[] args = new object[initializer.Arguments.Count];
@@ -303,7 +303,7 @@ foreach (ElementInit initializer in listInit.Initializers)
 
 同樣的技巧也可以用在排序：`OrderBy2(x => x.Gender)` 從 Expression 取出 `PropertyInfo`，比較時用反射讀值，只要值實作 `IComparable` 就能排序。
 
-```csharp
+```csharp csharp
 public static PropertyInfo GetProperty<T, U>(this Expression<Func<T, U>> expression)
 {
     MemberExpression member = (MemberExpression)expression.Body;
@@ -311,7 +311,7 @@ public static PropertyInfo GetProperty<T, U>(this Expression<Func<T, U>> express
 }
 ```
 
-```csharp
+```csharp csharp
 private int Partition(T[] items, int left, int right)
 {
     T part = items[right];

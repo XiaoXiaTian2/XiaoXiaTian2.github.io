@@ -25,7 +25,7 @@ StudentManagement 是一個單視窗的學生資料管理程式：上方表單�
 
 # 架構與功能
 
-```
+```text text
 StudentManagement/
 ├── MainWindow.xaml / .xaml.cs      View：XAML 版面，DataContext 指向 MainViewModel
 ├── MainViewModel.cs                ViewModel，同時實作 MVP 的 IStudentView
@@ -46,7 +46,7 @@ StudentManagement/
 
 code-behind 只做一件事：
 
-```csharp
+```csharp csharp
 public MainWindow()
 {
     InitializeComponent();
@@ -60,7 +60,7 @@ public MainWindow()
 
 在 WinForms 專案裡我習慣用 MVP 的 Contract 寫法：把 Presenter 與 View 的介面放在同一個 Contract 類別裡，彼此只認識介面。
 
-```csharp
+```csharp csharp
 internal class StudentContract
 {
     public interface IStudentPresenter
@@ -84,7 +84,7 @@ internal class StudentContract
 
 到了 WPF，畫面改由 Binding 驅動，所以我讓 `MainViewModel` 去實作 `IStudentView`。對 Presenter 來說它就是一個 View；對 XAML 來說它是 ViewModel。Command 收到操作後轉交給 Presenter，Presenter 處理完再呼叫 `OnXxx` 回呼更新 ViewModel 的屬性：
 
-```csharp
+```csharp csharp
 [AddINotifyPropertyChangedInterface]
 internal class MainViewModel : IStudentView
 {
@@ -110,7 +110,7 @@ internal class MainViewModel : IStudentView
 
 WPF 的 Button 透過 `Command` 屬性綁定 `ICommand`，取代 WinForms 的 Click 事件。我寫了一般版與泛型版的 `RelayCommand`，泛型版把 `CommandParameter` 轉成指定型別再交給委派：
 
-```csharp
+```csharp csharp
 internal class RelayCommand<T> : ICommand
 {
     public event EventHandler CanExecuteChanged;
@@ -135,7 +135,7 @@ internal class RelayCommand<T> : ICommand
 
 列表中的每張卡片的 DataContext 是 `Student`，但 Command 定義在 `MainViewModel`。所以按鈕要用 `RelativeSource AncestorType=Window` 往上找到 Window 的 DataContext，再用 `CommandParameter="{Binding}"` 把目前這筆 `Student` 傳進去：
 
-```xml
+```xml xml
 <Button
     Margin="8,0,0,0"
     Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -153,7 +153,7 @@ internal class RelayCommand<T> : ICommand
 
 Binding 要在資料變動時更新畫面，物件必須實作 `INotifyPropertyChanged`。`Student` 是手寫版本，可以看到一個屬性變動時同時通知另一個衍生屬性（勾選 `IsCompleted` 後 `IsDeletable` 也要重新讀取）：
 
-```csharp
+```csharp csharp
 private bool _isCompleted;
 
 public bool IsCompleted
@@ -183,7 +183,7 @@ private void OnPropertyChange(string propertyName)
 
 `MainViewModel` 則改用 Fody：只要加上 `[AddINotifyPropertyChangedInterface]`，編譯時就會自動織入通知程式碼，auto-property 寫法即可。原本手寫的 `OnPropertyChange` 還留在註解裡，可以對照兩種寫法：
 
-```csharp
+```csharp csharp
 [AddINotifyPropertyChangedInterface]
 internal class MainViewModel : IStudentView
 {
@@ -206,7 +206,7 @@ internal class MainViewModel : IStudentView
 
 每個欄位同時放了「顯示用的 TextBlock」和「編輯用的 TextBox」，用 `IsEditable` 決定誰看得到。轉換器加上 `ConverterParameter` 讓同一個類別可以正反兩用：
 
-```csharp
+```csharp csharp
 public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 {
     if (value is bool b)
@@ -221,7 +221,7 @@ public object Convert(object value, Type targetType, object parameter, CultureIn
 }
 ```
 
-```xml
+```xml xml
 <Grid Style="{StaticResource FieldCell}">
     <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditable, Converter={StaticResource VisibilityConverter}, ConverterParameter=inverse}">
         <TextBlock Style="{StaticResource LabelText}" Text="姓名" />
@@ -240,7 +240,7 @@ public object Convert(object value, Type targetType, object parameter, CultureIn
 
 外觀全部寫在 `Window.Resources`。按鈕先定義一個 `BaseButton`，用 `ControlTemplate` 換掉預設外框做出圓角，再用 `BasedOn` 衍生出不同顏色的按鈕，只覆寫背景色與滑鼠移入的 Trigger：
 
-```xml
+```xml xml
 <Style x:Key="BaseButton" TargetType="Button">
     <!-- ... -->
     <Setter Property="Template">

@@ -41,7 +41,7 @@ LinkedList 是一個包含 4 個 Console 專案的方案，每個專案對應一
 
 節點只有資料和指向下一個節點的參考，`JackList<T>` 只記住 `Head`，其餘節點都靠 `Next` 串起來：
 
-```csharp
+```csharp csharp
 internal class Node<T>
 {
     public T Data;
@@ -52,7 +52,7 @@ internal class Node<T>
 
 `Add` 從 Head 一路走到尾端再接上新節點；`Remove` 則要同時記住「上一個節點」，找到目標後讓上一個節點跳過它：
 
-```csharp
+```csharp csharp
 Node<T> node = Head;
 Node<T> lastNode = null;
 while (node != null)
@@ -76,7 +76,7 @@ Head 本身的刪除在迴圈之前就先處理掉了，所以進迴圈後 `last
 
 `foreach` 只要求型別有 `GetEnumerator()`，回傳的物件要有 `MoveNext()` 和 `Current`。`JackList<T>` 實作 `IEnumerable`，把走訪的狀態交給另一個物件 `ForwardIterator<T>`：
 
-```csharp
+```csharp csharp
 internal class ForwardIterator<T> : IEnumerator
 {
     private readonly JackList<T> JackList;
@@ -104,7 +104,7 @@ internal class ForwardIterator<T> : IEnumerator
 
 對照組是「測試專案」的 `Students`，它把 `IEnumerable` 和 `IEnumerator` 都實作在自己身上，`GetEnumerator()` 先 `Reset()` 再回傳 `this`。這個專案主要是用來理解**集合初始化器**：只要型別實作 `IEnumerable` 又有 `Add` 方法，就能這樣寫：
 
-```csharp
+```csharp csharp
 Students students = new Students() { "Leo", "Allen", "Alice", "Chuck", "Jerry" };
 ```
 
@@ -114,7 +114,7 @@ Students students = new Students() { "Leo", "Allen", "Alice", "Chuck", "Jerry" }
 
 插入時比當前節點大就往右、小就往左，遞迴到空位時建立新節點，再一路把子樹接回去：
 
-```csharp
+```csharp csharp
 private Node InsertNode(Node initNode, int data)
 {
     if (initNode == null)
@@ -137,7 +137,7 @@ private Node InsertNode(Node initNode, int data)
 
 刪除比較麻煩，要分三種情況：沒有右子樹就回傳左子樹、沒有左子樹就回傳右子樹；兩邊都有時，用**右子樹的最小值**取代自己，再到右子樹把那個最小值刪掉：
 
-```csharp
+```csharp csharp
 else
 {
     if (initNode.Right == null)
@@ -162,7 +162,7 @@ return initNode;
 
 `Tree` 依 `Mode` 屬性決定 `GetEnumerator()` 回傳哪一種迭代器，`foreach` 那端完全不用改：
 
-```csharp
+```csharp csharp
 public IEnumerator GetEnumerator()
 {
     switch (Mode)
@@ -179,7 +179,7 @@ public IEnumerator GetEnumerator()
 
 `DFSIterator` 和串列的迭代器一樣是「索引 + 索引子」；索引子底下的 `GetNodeByIndex` 目前呼叫的是 `GetNodeByBFS`（`GetNodeByDFS` 那行被註解掉了）。BFS 的核心是佇列：取出一個節點，再把它的左右子節點排進隊伍，就會一層一層往下走：
 
-```csharp
+```csharp csharp
 Queue<Node> queue = new Queue<Node>();
 queue.Enqueue(Root);
 int counter = 0;
@@ -203,7 +203,7 @@ while (queue.Count > 0)
 
 `JackDictionary<TKey, TValue>` 用 `Entry` 陣列當 bucket，每個 `Entry` 有 `next`，同一個 bucket 的資料串成鏈結串列（鏈結法處理碰撞）。決定 bucket 的方式是把 hashCode 取正數後對陣列長度取餘數：
 
-```csharp
+```csharp csharp
 int num1 = key.GetHashCode() & 0x7FFFFFFF;
 int index1 = num1 % buckets.Length;
 
@@ -223,7 +223,7 @@ while (current1 != null)
 
 當 `(_count + 1f) / buckets.Length` 超過 0.72 時，陣列擴大成兩倍，並把舊資料依新的長度重新分配。每個 `Entry` 都存了自己的 `hashCode`，所以搬家時不用再呼叫一次 `GetHashCode()`：
 
-```csharp
+```csharp csharp
 foreach (var oldEntry in buckets)
 {
     var current = oldEntry;

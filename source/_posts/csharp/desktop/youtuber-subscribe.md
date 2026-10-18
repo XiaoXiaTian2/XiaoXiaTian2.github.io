@@ -44,7 +44,7 @@ YoutuberSubcribe 有三個視窗：
 
 這裡其實有**兩層**觀察者關係：
 
-```
+```text text
 YoutuberForm ──上傳──> Channel.Subject<Video> ──> User.Receive
      │                                              │
      └──────────> MessageHandler.Subject<Message> <─┘
@@ -60,7 +60,7 @@ YoutuberForm ──上傳──> Channel.Subject<Video> ──> User.Receive
 
 `Channel` 不自己管理訂閱者清單，直接把工作交給 Rx 的 `Subject<Video>`。發布影片就是 `Next`，訂閱就是把 `Subject.Subscribe` 的結果回傳出去：
 
-```csharp
+```csharp csharp
 public class Channel
 {
     public readonly Subject<Video> Subject = new Subject<Video>();
@@ -84,13 +84,13 @@ public class Channel
 
 訂閱時把 `user.Receive` 這個**方法群組**直接當成 `Action<Video>` 傳進去，C# 會自動把它轉成委派。回傳的 `Subscription` 存在 `User` 身上，之後取消訂閱就靠它：
 
-```csharp
+```csharp csharp
 User user = new User(subscribername.Text, channel.ChannelName);
 var subscription = channel.Subscribe(user.Receive);
 user.Subscription = subscription;
 ```
 
-```csharp
+```csharp csharp
 public class User
 {
     public string Name { get; set; }
@@ -114,7 +114,7 @@ public class User
 
 三個視窗都需要把事件顯示到消息大廳，但我不想讓 `YoutuberForm`、`UserForm`、`User` 都拿到 `NotifyForm` 的參考。解法是一個 static 的 Subject，誰都可以 `Publish`，消息大廳只要訂閱一次：
 
-```csharp
+```csharp csharp
 internal static class MessageHandler
 {
     public static readonly Subject<Message> Subject = new Subject<Message>();
@@ -127,7 +127,7 @@ internal static class MessageHandler
 
 `NotifyForm` 在建構子裡訂閱，依訊息來源決定加到哪一欄：
 
-```csharp
+```csharp csharp
 MessageHandler.Subject.Subscribe(message =>
 {
     switch (message.Type)
@@ -156,7 +156,7 @@ MessageHandler.Subject.Subscribe(message =>
 
 `NotifyForm` 持有唯一的 `Youtuber` 實例，開啟其他視窗時把它（或它的頻道清單）從建構子傳進去，兩個視窗看到的就是同一批 `Channel` 物件：
 
-```csharp
+```csharp csharp
 private void button1_Click(object sender, EventArgs e)
 {
     YoutuberForm youtuberForm = new YoutuberForm(Youtuber);
@@ -172,7 +172,7 @@ private void button2_Click(object sender, EventArgs e)
 
 下拉選單直接綁定 `List<Channel>`，用 `DisplayMember` 指定顯示的屬性；因為沒有設定 `ValueMember`，`SelectedValue` 拿到的就是 `Channel` 物件本身，上傳時直接轉型使用：
 
-```csharp
+```csharp csharp
 private void upload_Click(object sender, EventArgs e)
 {
     string fullText = $"{channelbox.Text} 發布 {videotitle.Text}";
@@ -185,7 +185,7 @@ private void upload_Click(object sender, EventArgs e)
 
 `UserForm` 用 `ToDictionary` 替每個頻道建立一份訂閱者清單，切換頻道時重新繪製。每一列是動態產生的 Label 加按鈕，按鈕的 `Tag` 放著對應的 `User`，點擊時就知道要取消誰：
 
-```csharp
+```csharp csharp
 private void renderChannelList(List<User> users)
 {
     flowLayoutPanel1.Controls.Clear();
@@ -201,7 +201,7 @@ private void renderChannelList(List<User> users)
 }
 ```
 
-```csharp
+```csharp csharp
 private void unsubscribe_Click(object sender, EventArgs e)
 {
     Button btn = sender as Button;

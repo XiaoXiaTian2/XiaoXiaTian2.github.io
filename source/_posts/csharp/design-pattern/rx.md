@@ -31,7 +31,7 @@ Rx repo 裡有兩個專案：
 
 # 架構與功能
 
-```
+```text text
 Rx/
 ├── Program.cs             # EventHandlerPractice 的進入點
 ├── Messenger.cs           # 用 List<Action<T>> 收集訂閱者，並多載 + 運算子
@@ -54,7 +54,7 @@ Rx/
 
 觀察者模式的角色很單純：主題（Subject）維護一份觀察者清單，狀態改變時逐一通知。我先用介面把角色定義出來：
 
-```csharp
+```csharp csharp
 internal interface ISubject<T>
 {
     IList<T> observers { get; set; }
@@ -66,7 +66,7 @@ internal interface ISubject<T>
 
 報社和送牛奶都實作這個介面，`Notify` 時對每個訂戶呼叫 `Update`：
 
-```csharp
+```csharp csharp
 internal class MilkSender<TObeserver> : ISubject<TObeserver> where TObeserver : IObeserver, new()
 {
     // ...
@@ -87,7 +87,7 @@ internal class MilkSender<TObeserver> : ISubject<TObeserver> where TObeserver : 
 
 C# 的事件可以用 `+=` 註冊，我想讓自己的類別也能這樣寫，於是多載了 `+` 運算子（多載 `+` 之後，`+=` 會自動跟著可用）：
 
-```csharp
+```csharp csharp
 public static NewspaperOffice<TObeserver> operator +(NewspaperOffice<TObeserver> operand, TObeserver obeserver)
 {
     operand.observers.Add(obeserver);
@@ -95,7 +95,7 @@ public static NewspaperOffice<TObeserver> operator +(NewspaperOffice<TObeserver>
 }
 ```
 
-```csharp
+```csharp csharp
 newspaperOffice += customerA;
 newspaperOffice.AddObserver(customerB);
 newspaperOffice.Notify();
@@ -107,7 +107,7 @@ newspaperOffice.Notify();
 
 經典寫法每一種訂戶都要寫一個類別。`Messenger<T>` 改成直接收集 `Action<T>`，訂閱者只要給一個 lambda：
 
-```csharp
+```csharp csharp
 public class Messenger<T>
 {
     public event EventHandler<T> On;
@@ -137,7 +137,7 @@ public class Messenger<T>
 
 Rx 的觀察者會收到三種訊號：下一筆資料（OnNext）、錯誤（OnError）、結束（OnComplete）。我先定義介面，再用三個委派欄位實作，讓呼叫端可以只傳 lambda：
 
-```csharp
+```csharp csharp
 public interface IObserver<T>
 {
     void OnNext(T num);
@@ -146,7 +146,7 @@ public interface IObserver<T>
 }
 ```
 
-```csharp
+```csharp csharp
 public class Observer<T> : IObserver<T>
 {
     public Action<T> Next;
@@ -173,7 +173,7 @@ public class Observer<T> : IObserver<T>
 
 `Subject<T>` 的 `Subscribe` 把委派包成 `Observer<T>` 加進清單，並回傳一個 `Subscription<T>`；`Next` 則把資料廣播給每個觀察者，任一個觀察者丟出例外時改呼叫它自己的 `OnError`，不會中斷其他人：
 
-```csharp
+```csharp csharp
 public Subscription<T> Subscribe(Action<T> onNext, Action<string> onError = null, Action onCompleted = null)
 {
     IObserver<T> observer = new Observer<T>
@@ -205,7 +205,7 @@ public void Next(T num)
 
 `Subscription<T>` 只記住「哪個 Subject」和「哪個 Observer」，取消時請 Subject 移除它。`Subject.Remove` 宣告成 `internal`，引用這個類別庫的其他專案只能透過 Subscription 取消，不能任意刪別人的訂閱：
 
-```csharp
+```csharp csharp
 public class Subscription<T>
 {
     private Subject<T> subject;
@@ -225,7 +225,7 @@ public class Subscription<T>
 
 使用起來就和 Rx 的 `IDisposable` 訂閱很像：
 
-```csharp
+```csharp csharp
 Subject<string> subject = new Subject<string>();
 
 Subscription<string> subscriptionA = subject.Subscribe(data => Console.WriteLine(data));

@@ -30,7 +30,7 @@ OrderSystem 是一個點餐系統：左邊依菜單動態產生勾選框與數�
 
 # 架構與功能
 
-```
+```text text
 OrderSystem/
 ├── Form1.cs                 # 主畫面：菜單勾選、折扣下拉選單、AI 推薦開關
 ├── Extension.cs             # 擴充方法：依菜單動態產生 FlowLayoutPanel 與控制項
@@ -60,7 +60,7 @@ OrderSystem/
 
 `DiscountOrders/` 資料夾保留了最早的寫法：每一種折扣是一個類別（大部分繼承 `Discount` 並覆寫 `CalDisount`），折扣名稱和計算數字直接寫死在程式裡。
 
-```csharp
+```csharp csharp
 class AllFivePercentOff : Discount
 {
     public override void CalDisount(List<Item> items)
@@ -80,7 +80,7 @@ class AllFivePercentOff : Discount
 
 這樣每多一個活動就要多一個類別。後來我把折扣歸納成 4 種「計算方式」，每種是一個 Strategy，具體的品項、數量、折扣比例則改成 JSON 資料：
 
-```csharp
+```csharp csharp
 public abstract class AStrategy
 {
     protected List<Item> items { get; set; }
@@ -95,7 +95,7 @@ public abstract class AStrategy
 }
 ```
 
-```json
+```json json
 {
   "Name": "香魚飯搭配海帶湯打八折",
   "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
@@ -113,7 +113,7 @@ public abstract class AStrategy
 
 每筆折扣自己帶著 `Strategy` 欄位，寫的是完整類別名稱。`DiscountContext` 拿到後用反射建立對應的策略，所以新增活動只要改 JSON，不用動程式：
 
-```csharp
+```csharp csharp
 if (orderRequest.AIRecommand == false)
 {
     Type discountType = Type.GetType(orderRequest.DiscountType.Strategy);
@@ -130,7 +130,7 @@ if (orderRequest.AIRecommand == false)
 
 條件的 `Name` 可以用 `|` 寫多個候選品項（例如任選幾種飲料）。策略裡先用帶索引的 `SelectMany` 把條件攤平，索引當作條件編號，再和訂單做比對、分組：
 
-```csharp
+```csharp csharp
 var conditionItems = discount.Conditions.SelectMany((condition, ID) =>
 {
     return condition.Name.Split('|')
@@ -173,7 +173,7 @@ int leastFreeSets = matchItemGroup.Select(item => new
 
 Gemini 的 Function Calling 需要在請求裡附上 `tools.functionDeclarations`，描述有哪些函式、參數長什麼樣子。我把宣告做成抽象類別 `Functiondeclaration`，請求模型在建構時掃描整個 Assembly，自動把所有子類別加進去：
 
-```csharp
+```csharp csharp
 public AIRequestModel()
 {
     var allTypes = Assembly.GetExecutingAssembly().DefinedTypes;
@@ -191,7 +191,7 @@ public AIRequestModel()
 
 目前只有一個工具「選擇折扣策略」，它的 `name` 刻意填成負責執行的類別完整名稱：
 
-```csharp
+```csharp csharp
 internal class DiscountSelectorDeclaration : Functiondeclaration
 {
     public DiscountSelectorDeclaration() { }
@@ -213,7 +213,7 @@ internal class DiscountSelectorDeclaration : Functiondeclaration
 
 模型回應時，如果 `text` 是 null，代表它選擇呼叫函式，`ExecRequest` 就回傳帶有 `functionCall` 的結果：
 
-```csharp
+```csharp csharp
 if (aIResponse.candidates[0].content.parts[0].text == null)
 {
     return new AIResult(true, null, aIResponse.candidates[0].content.parts[0].functionCall);
@@ -223,7 +223,7 @@ return new AIResult(false, aIResponse.candidates[0].content.parts[0].text, null)
 
 因為宣告時 `name` 就是類別名稱，執行時直接 `Type.GetType(name)` 建立工具並呼叫 `Apply`：
 
-```csharp
+```csharp csharp
 public object UseTool()
 {
     string name = functioncall.name;
@@ -239,7 +239,7 @@ public object UseTool()
 
 `functioncall.args` 反序列化後是 `object`（實際是 JObject），型別不明確。我在泛型基底 `ATool<T>` 裡先序列化成字串、再反序列化成工具需要的參數型別，讓子類別直接拿到強型別的 `response`：
 
-```csharp
+```csharp csharp
 public abstract class ATool<T>
 {
     protected T response = default;
@@ -261,7 +261,7 @@ public abstract class ATool<T>
 
 金鑰沒有寫進程式碼或 `App.config`（註解裡還留著原本讀 `AppSettings` 的寫法），而是從 Windows Credential Manager 讀取：
 
-```csharp
+```csharp csharp
 //private static readonly string _apiKey = ConfigurationManager.AppSettings["apiKey"];
 private static readonly string _apiKey = CredentialManager.ReadCredential(applicationName: "GeminiAppKey").Password;
 ```
@@ -272,7 +272,7 @@ private static readonly string _apiKey = CredentialManager.ReadCredential(applic
 
 菜單品項不是在設計工具裡拉的，而是 `Extension.GetMenu` 依 JSON 動態產生。勾選框和數量欄位透過 `Tag` 互相指向，事件處理時就能從一個控制項找到另一個：
 
-```csharp
+```csharp csharp
 CheckBox checkBox = new CheckBox
 {
     Text = item1.Name + '$' + item1.Price,
@@ -294,7 +294,7 @@ numericUpDown.ValueChanged += NumberChanged;
 
 計算完的明細則由 `ShowPanel` 包成 `FullSidePanel`，透過 static event 送回 Form1，讓折扣計算的程式不需要直接持有 Form 的參考：
 
-```csharp
+```csharp csharp
 class ReceivePanelHandler
 {
     // 08/16 HW 跟理由區打包成物件

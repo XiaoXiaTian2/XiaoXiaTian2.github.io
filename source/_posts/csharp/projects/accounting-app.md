@@ -37,7 +37,7 @@ AccountingApp 是整個課程中規模最大的綜合專案：一個可以記帳
 
 # 架構與功能
 
-```
+```text text
 AccountingApp/
 ├── Views/            記一筆、記帳本、帳戶分析、圖表分析、ImageForm、SingletonForm
 ├── Components/       Navbar（UserControl）
@@ -57,7 +57,7 @@ AccountingApp/
 
 一次操作的資料流大致是：
 
-```
+```text text
 View（Form）→ Presenter → Service / Builder → Repository → CSV 檔
           ←  OnXxx 回呼（DTO） ←
 ```
@@ -68,7 +68,7 @@ View（Form）→ Presenter → Service / Builder → Repository → CSV 檔
 
 每個畫面都有一個 Contract，把 Presenter 與 View 的介面放在一起，Form 只實作 View 介面、只呼叫 Presenter 介面：
 
-```csharp
+```csharp csharp
 public class RecordBookContract
 {
     public interface IRecordBookPresenter
@@ -89,7 +89,7 @@ public class RecordBookContract
 
 Presenter 從 Repository 拿到 DAO 後，用 AutoMapper 套件轉成 DTO 再回呼 View。屬性名稱相同時不用逐一設定，註解裡留著我當時的筆記：
 
-```csharp
+```csharp csharp
 public void GetRecords(DateTime start, DateTime end)
 {
     List<RecordModelDAO> daos = recordRepo.GetRecords(start, end);
@@ -108,7 +108,7 @@ public void GetRecords(DateTime start, DateTime end)
 
 新增記錄時，DTO 裡的圖片是 `Image` 物件，但存進 CSV 的 DAO 只需要檔案路徑，這時就用 `ForMember` 指定轉換方式：
 
-```csharp
+```csharp csharp
 var config = new MapperConfiguration(cfg =>
     cfg.CreateMap<RecordModelDTO, RecordModelDAO>()
     .ForMember(x => x.Img1, y => y.MapFrom(o => path1))
@@ -122,7 +122,7 @@ var config = new MapperConfiguration(cfg =>
 
 Presenter 和 Service 只依賴 `IRecordRepository`，不需要知道資料是一天一個資料夾的 CSV：
 
-```csharp
+```csharp csharp
 internal interface IRecordRepository
 {
     bool CreateAccount(RecordModelDAO accountDAO);
@@ -134,7 +134,7 @@ internal interface IRecordRepository
 
 查詢區間時，逐日組出資料夾路徑，有檔案才讀：
 
-```csharp
+```csharp csharp
 public List<RecordModelDAO> GetRecords(DateTime start, DateTime end)
 {
     var diff = end.Date - start.Date;
@@ -155,7 +155,7 @@ public List<RecordModelDAO> GetRecords(DateTime start, DateTime end)
 
 修改記錄時，先讀出當天全部資料，用反射把新 DAO 的每個屬性複製到目標物件，再整份寫回：
 
-```csharp
+```csharp csharp
 RecordModelDAO target = records.FirstOrDefault(rec => rec.Img1 == recordDAO.Img1);
 var props = target.GetType().GetProperties();
 for (int i = 0; i < props.Length; i++)
@@ -172,7 +172,7 @@ CSVHelper.WriteList<RecordModelDAO>(filePath, records);
 
 三種圖表的建立步驟相同：設定時間、篩選、分組 → 取資料 → 分析 → 產生 Chart，差別只在資料形狀與畫法。所以我定義了一個回傳自己的 `IChartBuilder`：
 
-```csharp
+```csharp csharp
 public interface IChartBuilder
 {
     IChartBuilder SetTimeRange(DateTime start, DateTime end);
@@ -189,7 +189,7 @@ public interface IChartBuilder
 
 `ChartPresenter` 依照下拉選單選到的 `ChartType` 列舉值組出類別名稱，用 `Activator.CreateInstance` 建立對應的 Builder；折線圖需要「每週／每月」參數，所以呼叫帶參數的建構子：
 
-```csharp
+```csharp csharp
 public void GetChartDataDTO(DateTime start, DateTime end, Dictionary<string, List<string>> filters, List<string> groups, string period, ChartType chartType)
 {
     Type classType = Type.GetType($"AccountingApp.Builders.{chartType}ChartBuilder");
@@ -210,7 +210,7 @@ public void GetChartDataDTO(DateTime start, DateTime end, Dictionary<string, Lis
 
 記帳本的表格裡，有些欄位要用下拉選單、有些要顯示圖片。我沒有在設計工具裡逐欄設定，而是在 Model 上標註 Attribute：
 
-```csharp
+```csharp csharp
 internal class RecordModel
 {
     [DisplayName("日期")]
@@ -230,7 +230,7 @@ internal class RecordModel
 
 畫面重繪時掃描屬性，依 Attribute 呼叫不同的擴充方法建立欄位：
 
-```csharp
+```csharp csharp
 foreach (var prop in typeof(RecordModel).GetProperties())
 {
     // 擴充方法
@@ -250,7 +250,7 @@ foreach (var prop in typeof(RecordModel).GetProperties())
 
 ComboBox 欄位的選項也是用反射取得：屬性名稱 `Members` 剛好對應 `DataModel` 上同名的 static 欄位，標題則讀 `DisplayNameAttribute`：
 
-```csharp
+```csharp csharp
 if (prop.Name != "Details")
 {
     comboBoxColumn.DataSource = typeof(DataModel).GetField(prop.Name).GetValue(null);
@@ -263,7 +263,7 @@ if (prop.Name != "Details")
 
 `AnalyzeService.AnalyzeData` 是我花最多時間想的地方。篩選規則是：**類別之間用 OR**（勾 Food 的「午餐」和 Move 的「悠遊卡」，兩種記錄都要出現），**其他欄位用 AND**（再勾「現金」就只留現金付款的）：
 
-```csharp
+```csharp csharp
 var categoriesKeys = DataModel.Details.Keys.ToList(); // 類別層級
 // category 層級 filter 先合併成一組 OR
 var categoryFilters = filters.Where(x => categoriesKeys.Contains(x.Key)).ToList();
@@ -286,7 +286,7 @@ foreach (var filter in filters.Where(x => !categoriesKeys.Contains(x.Key)))
 
 分組則是依使用者勾選的維度，動態組出一個以逗號串接的 key，再 `GroupBy` 加總。多個類別都屬於「類型」這一軸，所以只加一次 `x.Details`：
 
-```csharp
+```csharp csharp
 .GroupBy(x =>
 {
     var keyParts = new List<string>();
@@ -316,7 +316,7 @@ foreach (var filter in filters.Where(x => !categoriesKeys.Contains(x.Key)))
 
 每個畫面只建立一次，存在 Dictionary 裡，切換時隱藏目前的 Form、顯示目標 Form。Form 依名稱用反射建立，並讀取 private 欄位 `navbar1`，把目前頁面的按鈕停用：
 
-```csharp
+```csharp csharp
 public static Form GetInstance(string formName)
 {
     if (currentForm != null) { currentForm.Hide(); }

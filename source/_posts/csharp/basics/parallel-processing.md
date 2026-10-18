@@ -34,7 +34,7 @@ tags:
 
 程式流程：
 
-```
+```text text
 計算批次數 → 清空輸出資料夾 → 每批一個 Task.Run
   每批：讀取第 N 段資料（計時）→ lock 後寫入輸出檔（計時）
 → Task.WhenAll 等全部完成 → 輸出讀取、寫入時間的中位數與總時間
@@ -48,7 +48,7 @@ repo 只有 3 個 commit，剛加入專案檔案時 `Main` 還是空的，最後
 
 一次把千萬筆讀進記憶體再處理，記憶體與時間都很可觀，所以先依 `batchSize` 切成多批，每批交給一個 Task 在執行緒集區上跑，`Main` 本身是 `async Task`，最後 `await Task.WhenAll` 等所有批次完成：
 
-```csharp
+```csharp csharp
 static async Task Main(string[] args)
 {
     object a = new object();
@@ -87,7 +87,7 @@ static async Task Main(string[] args)
 
 上面那行 `int batchNumber = i;` 看似多餘，其實是關鍵。Lambda 捕捉的是**變數**而不是當下的值；`for` 迴圈的 `i` 在整個迴圈中只有一個，等 Task 真正開始執行時，迴圈可能已經跑完，`i` 已經變成 `batchCount`，所有批次都會讀到同一段（甚至超出範圍）。在迴圈內宣告區域變數，每一圈都是新的變數，各個 Lambda 才會各自捕捉到正確的批次編號：
 
-```csharp
+```csharp csharp
 int batchNumber = i;
 
 // 每批處理
@@ -107,7 +107,7 @@ Task task = Task.Run(() =>
 
 讀取可以各讀各的，但所有批次都寫到同一個輸出檔，同時寫入會互相干擾，所以寫入的部分用 `lock` 包起來，一次只讓一個 Task 進去：
 
-```csharp
+```csharp csharp
 //string outputPath = $"{outputDir}/{count}/MOCK_DATA_{count}_{batchNumber + 1}.csv";
 string outputPath = $"{outputDir}/{count}/MOCK_DATA_{count}.csv";
 // ...
@@ -125,7 +125,7 @@ writeTimes[batchNumber] = stopwatch.ElapsedMilliseconds / 1000.0;
 
 各批次的讀寫時間會有落差，我用中位數來代表「一批通常要多久」，好處是不會被少數特別慢的批次拉偏。寫成泛型擴充方法，透過 `selector` 決定要取哪個欄位：
 
-```csharp
+```csharp csharp
 public static double Medium<T>(this IEnumerable<T> list, Func<T, double> selector)
 {
     var doubleList = list.Select(selector).OrderBy(x => x).ToList();
@@ -142,7 +142,7 @@ public static double Medium<T>(this IEnumerable<T> list, Func<T, double> selecto
 }
 ```
 
-```csharp
+```csharp csharp
 double readTimeMedium = readTimes.Medium(x => x);
 double writeTimeMedium = writeTimes.Medium(x => x);
 double totalTime = totalStopwatch.ElapsedMilliseconds / 1000.0;

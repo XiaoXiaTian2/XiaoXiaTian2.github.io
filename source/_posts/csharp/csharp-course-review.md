@@ -46,7 +46,7 @@ tags:
 
 # 學習脈絡
 
-```
+```text text
 資料結構＋迭代器 → 委派／事件／觀察者 → 自製 Rx → Rx 套用到 WinForms
   → WPF 的 MVVM → 綜合專案（記帳本：MVP＋Repository＋Builder＋AutoMapper 套件）
   → 反射＋Expression Tree（自己寫 AutoMapper）→ 平行處理與效能實驗
@@ -67,7 +67,7 @@ tags:
 - **集合初始化器的原理**：`new Students { "Leo", "Allen" }` 需要型別實作 `IEnumerable` 並提供 `Add`
 - 快速排序，以 Tuple 交換兩個值
 
-```csharp
+```csharp csharp
 // 雜湊值取正數再取餘數，決定放進哪個 bucket
 int hashCode = key.GetHashCode() & 0x7FFFFFFF;
 int index = hashCode % buckets.Length;
@@ -88,7 +88,7 @@ int index = hashCode % buckets.Length;
 - **自製 Rx**：Subject、Observer（OnNext / OnError / OnComplete）、Subscription（Unsubscribe）
 - 用 static 的 `MessageHandler` 當全域事件匯流排
 
-```csharp
+```csharp csharp
 Subject<string> subject = new Subject<string>();
 Subscription<string> subscription = subject.Subscribe(data => Console.WriteLine(data));
 subject.Next("1");
@@ -107,7 +107,7 @@ subscription.Unsubcribe();
 - 自訂 Attribute 搭配 `GetCustomAttribute`，自動產生 DataGridView 欄位
 - 掃描 Assembly 找出所有子類別，自動註冊成 AI tool 宣告
 
-```csharp
+```csharp csharp
 // 依目標型別分類，組出 Converter 類別名稱後動態建立
 PropertyType destPropertyType = destType.GetPropertyType();
 string converterClassName = $"AutoMapper.Converters.{destPropertyType}Converter";
@@ -144,7 +144,7 @@ AConverter converter = (AConverter)Activator.CreateInstance(Type.GetType(convert
 - 用 `Stopwatch` 做 benchmark、比較不同批次大小
 - WinForms 的 async 事件處理、`System.Threading.Timer` 實作 debounce、`form.Invoke` 切回 UI 執行緒
 
-```csharp
+```csharp csharp
 for (int i = 0; i < batchCount; i++)
 {
     int batchNumber = i; // 先複製一份，避免 lambda 捕捉到同一個 i
